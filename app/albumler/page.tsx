@@ -11,8 +11,7 @@ export default function AlbumlerSayfasi() {
       title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
       date: "13 Eylül 2026",
       coverImage: "/sporokulu/sporokulu1.jpg",
-      colSpan: "col-span-1 md:col-span-2",
-      isLarge: true, // Büyük dikey/yatay esnek kart
+      colSpan: "col-span-1",
       photos: [
         "/sporokulu/sporokulu1.jpg", "/sporokulu/sporokulu2.jpg", "/sporokulu/sporokulu3.jpg",
         "/sporokulu/sporokulu4.jpg", "/sporokulu/sporokulu5.jpg", "/sporokulu/sporokulu6.jpg",
@@ -26,7 +25,6 @@ export default function AlbumlerSayfasi() {
       date: "13 Eylül 2026",
       coverImage: "/u11zaferselvi/u11zaferselvi1.jpg",
       colSpan: "col-span-1",
-      isLarge: false,
       photos: [
         "/u11zaferselvi/u11zaferselvi1.jpg", "/u11zaferselvi/u11zaferselvi2.jpg", "/u11zaferselvi/u11zaferselvi3.jpg",
         "/u11zaferselvi/u11zaferselvi4.jpg", "/u11zaferselvi/u11zaferselvi5.jpg", "/u11zaferselvi/u11zaferselvi6.jpg",
@@ -40,7 +38,6 @@ export default function AlbumlerSayfasi() {
       date: "12 Eylül 2026",
       coverImage: "/1sporokulu/1sporokulu1.jpg",
       colSpan: "col-span-1",
-      isLarge: false,
       photos: [
         "/1sporokulu/1sporokulu1.jpg", "/1sporokulu/1sporokulu2.jpg", "/1sporokulu/1sporokulu3.jpg",
         "/1sporokulu/1sporokulu4.jpg", "/1sporokulu/1sporokulu5.jpg", "/1sporokulu/1sporokulu6.jpg",
@@ -54,7 +51,6 @@ export default function AlbumlerSayfasi() {
       date: "12 Eylül 2026",
       coverImage: "/u12zaferselvi/u12zaferselvi1.jpg",
       colSpan: "col-span-1",
-      isLarge: false,
       photos: [
         "/u12zaferselvi/u12zaferselvi1.jpg", "/u12zaferselvi/u12zaferselvi2.jpg", "/u12zaferselvi/u12zaferselvi3.jpg",
         "/u12zaferselvi/u12zaferselvi4.jpg", "/u12zaferselvi/u12zaferselvi5.jpg", "/u12zaferselvi/u12zaferselvi6.jpg",
@@ -67,7 +63,6 @@ export default function AlbumlerSayfasi() {
       date: "06 Eylül 2026",
       coverImage: "/2sporokulu/2sporokulu1.jpg",
       colSpan: "col-span-1",
-      isLarge: false,
       photos: [
         "/2sporokulu/2sporokulu1.jpg", "/2sporokulu/2sporokulu2.jpg", "/2sporokulu/2sporokulu3.jpg",
         "/2sporokulu/2sporokulu4.jpg", "/2sporokulu/2sporokulu5.jpg", "/2sporokulu/2sporokulu6.jpg",
@@ -79,8 +74,7 @@ export default function AlbumlerSayfasi() {
       title: "U14 Zeytinburnu Zaferspor - İdman",
       date: "04 Eylül 2026",
       coverImage: "/u14zaferidman/u14zaferidman1.jpg",
-      colSpan: "col-span-1 md:col-span-2",
-      isLarge: true,
+      colSpan: "col-span-1",
       photos: [
         "/u14zaferidman/u14zaferidman2.jpg", "/u14zaferidman/u14zaferidman3.jpg",
         "/u14zaferidman/u14zaferidman4.jpg", "/u14zaferidman/u14zaferidman5.jpg", "/u14zaferidman/u14zaferidman6.jpg",
@@ -93,7 +87,6 @@ export default function AlbumlerSayfasi() {
       date: "03 Eylül 2026",
       coverImage: "/u14zaferarnavutkoy/u14zaferarnavutkoy1.jpg",
       colSpan: "col-span-1",
-      isLarge: false,
       photos: [
         "/u14zaferarnavutkoy/u14zaferarnavutkoy1.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy2.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy3.jpg",
         "/u14zaferarnavutkoy/u14zaferarnavutkoy4.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy5.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy6.jpg",
@@ -106,8 +99,7 @@ export default function AlbumlerSayfasi() {
       title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
       date: "01 Eylül 2026",
       coverImage: "/3sporokulu/3sporokulu1.jpg",
-      colSpan: "col-span-1 md:col-span-2",
-      isLarge: true,
+      colSpan: "col-span-1",
       photos: [
         "/3sporokulu/3sporokulu1.jpg", "/3sporokulu/3sporokulu2.jpg", "/3sporokulu/3sporokulu3.jpg",
         "/3sporokulu/3sporokulu4.jpg", "/3sporokulu/3sporokulu5.jpg", "/3sporokulu/3sporokulu6.jpg",
@@ -139,25 +131,26 @@ export default function AlbumlerSayfasi() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      {/* 3 sütunlu kusursuz eşit kare grid yapısı */}
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         {allAlbums.map((album) => (
           <div 
             key={album.id} 
             onClick={() => setSelectedAlbum(album)}
-            className={`relative group overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer w-full ${album.colSpan} ${album.isLarge ? 'h-[450px] md:h-[520px]' : 'aspect-square'}`}
+            className="relative group overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer w-full aspect-square shadow-xl border border-neutral-800/60"
           >
             <Image 
               src={album.coverImage}
               alt={album.title}
               fill
-              className="object-contain transition-transform duration-700 group-hover:scale-105 p-2"
+              className="object-contain transition-transform duration-700 group-hover:scale-105 p-3"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none">
               <div className="absolute bottom-0 left-0 p-6 w-full">
                 <div className="flex justify-between items-end">
                   <div>
                     <p className="text-orange-400 text-xs font-bold tracking-wider mb-1 uppercase">{album.date}</p>
-                    <h3 className="text-white text-xl font-medium">{album.title}</h3>
+                    <h3 className="text-white text-lg font-medium">{album.title}</h3>
                   </div>
                   <div className="bg-orange-500/20 text-orange-400 backdrop-blur px-3 py-1 rounded-full text-xs font-bold">
                     {album.photos.length} Kare
@@ -186,7 +179,7 @@ export default function AlbumlerSayfasi() {
 
           <div className="p-4 md:p-8 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             {selectedAlbum.photos.map((photoUrl: string, index: number) => (
-              <div key={index} className="relative h-[450px] md:h-[600px] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 flex items-center justify-center p-2">
+              <div key={index} className="relative aspect-square w-full rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 flex items-center justify-center p-2">
                 <Image 
                   src={photoUrl} 
                   alt={`${selectedAlbum.title} kare ${index + 1}`}
