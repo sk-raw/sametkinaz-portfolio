@@ -101,20 +101,20 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {albums.slice(0, 3).map((album) => (
             <div 
               key={album.id} 
               onClick={() => setSelectedAlbum(album)}
-              className={`relative group overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer ${album.colSpan}`}
+              className={`relative group overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer w-full aspect-square ${album.colSpan}`}
             >
               <Image 
                 src={album.coverImage}
                 alt={album.title}
                 fill
-                className="object-contain transition-transform duration-700 group-hover:scale-105 p-2"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none">
                 <div className="absolute bottom-0 left-0 p-6 w-full">
                   <div className="flex justify-between items-end">
                     <div>
@@ -149,12 +149,12 @@ export default function Home() {
 
           <div className="p-4 md:p-8 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             {selectedAlbum.photos.map((photoUrl: string, index: number) => (
-              <div key={index} className="relative h-[450px] md:h-[600px] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 flex items-center justify-center p-2">
+              <div key={index} className="relative aspect-square w-full rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800">
                 <Image 
                   src={photoUrl} 
                   alt={`${selectedAlbum.title} kare ${index + 1}`}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                 />
               </div>
             ))}
