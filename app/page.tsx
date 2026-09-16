@@ -66,17 +66,17 @@ export default function Home() {
       </header>
 
      {/* HERO SECTION */}
-      <section className="relative h-[85vh] md:h-[95vh] flex flex-col items-center justify-center text-center px-4 pt-20 overflow-hidden bg-neutral-950">
-        <div className="absolute inset-0 z-0">
+      <section className="relative w-full min-h-[85vh] flex flex-col items-center justify-center text-center px-4 pt-32 pb-16 bg-neutral-950">
+        
+        {/* Fotoğraf normal bir akış içinde, hiçbir yere girmeden tam ortada durur */}
+        <div className="relative w-full max-w-4xl aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden mb-8 shadow-2xl border border-neutral-800">
           <Image 
             src="/kapak.jpg" 
             alt="Futbol Sahası Kapak Fotoğrafı"
             fill
-            className="object-contain" // object-contain ile fotoğrafın tamamı kırpılmadan sığdırılır
+            className="object-cover"
             priority
           />
-          {/* Karartma filtresi */}
-          <div className="absolute inset-0 bg-neutral-950/60" />
         </div>
         
         <div className="relative z-10 max-w-3xl">
