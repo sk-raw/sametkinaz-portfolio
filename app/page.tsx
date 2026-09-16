@@ -5,41 +5,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
-  // --- ALBÜM VERİLERİ (Bunu kendi çekimlerinle değiştirebilirsin) ---
+  // --- GERÇEK ALBÜM VERİLERİ (EN YENİ 3 ALBÜM) ---
   const albums = [
     {
       id: 1,
-      title: "Zeytinburnu Zaferspor - Lig Mücadelesi",
-      date: "14 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1600250395222-6b944208a099?q=80&w=800&auto=format&fit=crop",
+      title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
+      date: "13 Eylül 2026",
+      coverImage: "/sporokulu/sporokulu1.jpg",
       colSpan: "col-span-1 md:col-span-2 md:row-span-2",
       photos: [
-        "https://images.unsplash.com/photo-1600250395222-6b944208a099?q=80&w=1200&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1518605368461-1e1252281146?q=80&w=1200&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1431324155629-1a6d0a11f582?q=80&w=1200&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop"
+        "/sporokulu/sporokulu1.jpg", "/sporokulu/sporokulu2.jpg", "/sporokulu/sporokulu3.jpg",
+        "/sporokulu/sporokulu4.jpg", "/sporokulu/sporokulu5.jpg", "/sporokulu/sporokulu6.jpg",
+        "/sporokulu/sporokulu7.jpg", "/sporokulu/sporokulu8.jpg", "/sporokulu/sporokulu9.jpg",
+        "/sporokulu/sporokulu10.jpg", "/sporokulu/sporokulu11.jpg", "/sporokulu/sporokulu12.jpg"
       ]
     },
     {
       id: 2,
-      title: "Arnavutköy Belediye Spor",
-      date: "10 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=800&auto=format&fit=crop",
+      title: "U11 Zeytinburnu Zaferspor - Selvi Hazırlık Maçı",
+      date: "13 Eylül 2026",
+      coverImage: "/u11zaferselvi/u11zaferselvi1.jpg",
       colSpan: "col-span-1",
       photos: [
-        "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1200&auto=format&fit=crop"
+        "/u11zaferselvi/u11zaferselvi1.jpg", "/u11zaferselvi/u11zaferselvi2.jpg", "/u11zaferselvi/u11zaferselvi3.jpg",
+        "/u11zaferselvi/u11zaferselvi4.jpg", "/u11zaferselvi/u11zaferselvi5.jpg", "/u11zaferselvi/u11zaferselvi6.jpg",
+        "/u11zaferselvi/u11zaferselvi7.jpg", "/u11zaferselvi/u11zaferselvi8.jpg", "/u11zaferselvi/u11zaferselvi9.jpg",
+        "/u11zaferselvi/u11zaferselvi10.jpg", "/u11zaferselvi/u11zaferselvi11.jpg", "/u11zaferselvi/u11zaferselvi12.jpg"
       ]
     },
     {
       id: 3,
-      title: "Taktik İdman & Hazırlık",
-      date: "05 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=800&auto=format&fit=crop",
+      title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
+      date: "12 Eylül 2026",
+      coverImage: "/1sporokulu/1sporokulu1.jpg",
       colSpan: "col-span-1",
       photos: [
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1200&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1551280857-2b9bbe52cc45?q=80&w=1200&auto=format&fit=crop"
+        "/1sporokulu/1sporokulu1.jpg", "/1sporokulu/1sporokulu2.jpg", "/1sporokulu/1sporokulu3.jpg",
+        "/1sporokulu/1sporokulu4.jpg", "/1sporokulu/1sporokulu5.jpg", "/1sporokulu/1sporokulu6.jpg",
+        "/1sporokulu/1sporokulu7.jpg", "/1sporokulu/1sporokulu8.jpg", "/1sporokulu/1sporokulu9.jpg",
+        "/1sporokulu/1sporokulu10.jpg"
       ]
     }
   ];
@@ -68,7 +72,7 @@ export default function Home() {
       <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
         <div className="absolute inset-0 z-0 opacity-40">
           <Image 
-            src="https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=2000&auto=format&fit=crop" 
+            src="/u14zaferarnavutkoy/u14zaferarnavutkoy2.jpg" 
             alt="Futbol Sahası Arka Plan"
             fill
             className="object-cover"
@@ -97,7 +101,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Öne Çıkan Albümler</h2>
             <p className="text-neutral-500">En son eklenen maç ve idman kareleri.</p>
           </div>
-          <Link href="/albumler" className="hidden md:flex px-6 py-2 bg-orange-500 hover:bg-orange-400 text-neutral-950 text-sm font-bold rounded-full transition-colors items-center gap-2 shadow-lg">
+          <Link href="/albumler" className="px-6 py-2 bg-orange-500 hover:bg-orange-400 text-neutral-950 text-sm font-bold rounded-full transition-colors flex items-center gap-2 shadow-lg">
             Tüm Albümleri Gör &rarr;
           </Link>
         </div>
@@ -169,7 +173,6 @@ export default function Home() {
 
       {/* EKİPMAN BÖLÜMÜ */}
       <section id="ekipman" className="border-t border-neutral-900 bg-neutral-900/30 py-24">
-        {/* Öncekiyle aynı ekipman bölümü... */}
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Vizörün Arkasında</h2>
