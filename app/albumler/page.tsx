@@ -73,7 +73,7 @@ export default function AlbumlerSayfasi() {
       id: 6,
       title: "U14 Zeytinburnu Zaferspor - İdman",
       date: "04 Eylül 2026",
-      coverImage: "/u14zaferidman/u14zaferidman2jpg",
+      coverImage: "/u14zaferidman/u14zaferidman3.jpg",
       colSpan: "col-span-1",
       photos: [
         "/u14zaferidman/u14zaferidman2.jpg", "/u14zaferidman/u14zaferidman3.jpg",
