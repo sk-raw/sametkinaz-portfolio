@@ -65,17 +65,18 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
-        <div className="absolute inset-0 z-0 opacity-40">
+     {/* HERO SECTION */}
+      <section className="relative h-[85vh] md:h-[95vh] flex flex-col items-center justify-center text-center px-4 pt-20">
+        <div className="absolute inset-0 z-0 opacity-100">
           <Image 
             src="/kapak.jpg" 
             alt="Futbol Sahası Kapak Fotoğrafı"
             fill
-            className="object-cover object-top" // object-top ile yukarıdan kırpılması engellendi
+            className="object-cover object-top"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent" />
+          {/* Fotoğrafın üzerine dengeli bir karartma filtresi eklendi */}
+          <div className="absolute inset-0 bg-neutral-950/60" />
         </div>
         
         <div className="relative z-10 max-w-3xl">
