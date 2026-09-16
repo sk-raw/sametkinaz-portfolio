@@ -75,8 +75,8 @@ export default function Home() {
             className="object-cover object-top"
             priority
           />
-          {/* Yazıların net okunması için hafif dengeli karartma */}
-          <div className="absolute inset-0 bg-neutral-950/50" />
+          {/* Aşağıdan yukarıya doğru hafifleyen ve şık duran karartma geçişi */}
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
         </div>
         
         <div className="relative z-10 max-w-3xl">
