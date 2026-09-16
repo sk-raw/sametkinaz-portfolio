@@ -5,49 +5,106 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function AlbumlerSayfasi() {
-  // --- BÜTÜN ALBÜM ARŞİVİNİ BURAYA EKLEYEBİLİRSİN ---
-  // Burası 10-20 albüm olsa da sorun olmaz, aşağı doğru listelenir.
+  // Yeniden eskiye doğru sıralanmış 8 albümlük dev arşiv
   const allAlbums = [
     {
       id: 1,
-      title: "Zeytinburnu Zaferspor - Lig Mücadelesi",
-      date: "14 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1600250395222-6b944208a099?q=80&w=800&auto=format&fit=crop",
+      title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
+      date: "13 Eylül 2026",
+      coverImage: "/sporokulu/sporokulu1.jpg",
       colSpan: "col-span-1 md:col-span-2",
       photos: [
-        "https://images.unsplash.com/photo-1600250395222-6b944208a099?q=80&w=1200&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1518605368461-1e1252281146?q=80&w=1200&auto=format&fit=crop"
+        "/sporokulu/sporokulu1.jpg", "/sporokulu/sporokulu2.jpg", "/sporokulu/sporokulu3.jpg",
+        "/sporokulu/sporokulu4.jpg", "/sporokulu/sporokulu5.jpg", "/sporokulu/sporokulu6.jpg",
+        "/sporokulu/sporokulu7.jpg", "/sporokulu/sporokulu8.jpg", "/sporokulu/sporokulu9.jpg",
+        "/sporokulu/sporokulu10.jpg", "/sporokulu/sporokulu11.jpg", "/sporokulu/sporokulu12.jpg"
       ]
     },
     {
       id: 2,
-      title: "Arnavutköy Belediye Spor",
-      date: "10 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=800&auto=format&fit=crop",
+      title: "U11 Zeytinburnu Zaferspor - Selvi Hazırlık Maçı",
+      date: "13 Eylül 2026",
+      coverImage: "/u11zaferselvi/u11zaferselvi1.jpg",
       colSpan: "col-span-1",
       photos: [
-        "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop"
+        "/u11zaferselvi/u11zaferselvi1.jpg", "/u11zaferselvi/u11zaferselvi2.jpg", "/u11zaferselvi/u11zaferselvi3.jpg",
+        "/u11zaferselvi/u11zaferselvi4.jpg", "/u11zaferselvi/u11zaferselvi5.jpg", "/u11zaferselvi/u11zaferselvi6.jpg",
+        "/u11zaferselvi/u11zaferselvi7.jpg", "/u11zaferselvi/u11zaferselvi8.jpg", "/u11zaferselvi/u11zaferselvi9.jpg",
+        "/u11zaferselvi/u11zaferselvi10.jpg", "/u11zaferselvi/u11zaferselvi11.jpg", "/u11zaferselvi/u11zaferselvi12.jpg"
       ]
     },
     {
       id: 3,
-      title: "Taktik İdman & Hazırlık",
-      date: "05 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=800&auto=format&fit=crop",
+      title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
+      date: "12 Eylül 2026",
+      coverImage: "/1sporokulu/1sporokulu1.jpg",
       colSpan: "col-span-1",
       photos: [
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1200&auto=format&fit=crop"
+        "/1sporokulu/1sporokulu1.jpg", "/1sporokulu/1sporokulu2.jpg", "/1sporokulu/1sporokulu3.jpg",
+        "/1sporokulu/1sporokulu4.jpg", "/1sporokulu/1sporokulu5.jpg", "/1sporokulu/1sporokulu6.jpg",
+        "/1sporokulu/1sporokulu7.jpg", "/1sporokulu/1sporokulu8.jpg", "/1sporokulu/1sporokulu9.jpg",
+        "/1sporokulu/1sporokulu10.jpg"
       ]
     },
-    // Yeni bir albüm eklemek istersen virgül koyup aşağıya ekleyebilirsin
     {
       id: 4,
-      title: "Özel Çekim: Kaleci Antrenmanı",
-      date: "01 Eylül 2026",
-      coverImage: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=800&auto=format&fit=crop",
+      title: "U12 Zeytinburnu Zaferspor - Selvi Hazırlık Maçı",
+      date: "12 Eylül 2026",
+      coverImage: "/u12zaferselvi/u12zaferselvi1.jpg",
+      colSpan: "col-span-1",
+      photos: [
+        "/u12zaferselvi/u12zaferselvi1.jpg", "/u12zaferselvi/u12zaferselvi2.jpg", "/u12zaferselvi/u12zaferselvi3.jpg",
+        "/u12zaferselvi/u12zaferselvi4.jpg", "/u12zaferselvi/u12zaferselvi5.jpg", "/u12zaferselvi/u12zaferselvi6.jpg",
+        "/u12zaferselvi/u12zaferselvi7.jpg"
+      ]
+    },
+    {
+      id: 5,
+      title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
+      date: "06 Eylül 2026",
+      coverImage: "/2sporokulu/2sporokulu1.jpg",
+      colSpan: "col-span-1",
+      photos: [
+        "/2sporokulu/2sporokulu1.jpg", "/2sporokulu/2sporokulu2.jpg", "/2sporokulu/2sporokulu3.jpg",
+        "/2sporokulu/2sporokulu4.jpg", "/2sporokulu/2sporokulu5.jpg", "/2sporokulu/2sporokulu6.jpg",
+        "/2sporokulu/2sporokulu7.jpg"
+      ]
+    },
+    {
+      id: 6,
+      title: "U14 Zeytinburnu Zaferspor - İdman",
+      date: "04 Eylül 2026",
+      coverImage: "/u14zaferidman/u14zaferidman1.jpg",
       colSpan: "col-span-1 md:col-span-2",
       photos: [
-        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop"
+        "/u14zaferidman/u14zaferidman1.jpg", "/u14zaferidman/u14zaferidman2.jpg", "/u14zaferidman/u14zaferidman3.jpg",
+        "/u14zaferidman/u14zaferidman4.jpg", "/u14zaferidman/u14zaferidman5.jpg", "/u14zaferidman/u14zaferidman6.jpg",
+        "/u14zaferidman/u14zaferidman7.jpg"
+      ]
+    },
+    {
+      id: 7,
+      title: "U14 Zeytinburnu Zaferspor - Arnavutköy Hazırlık Maçı",
+      date: "03 Eylül 2026",
+      coverImage: "/u14zaferarnavutkoy/u14zaferarnavutkoy1.jpg",
+      colSpan: "col-span-1",
+      photos: [
+        "/u14zaferarnavutkoy/u14zaferarnavutkoy1.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy2.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy3.jpg",
+        "/u14zaferarnavutkoy/u14zaferarnavutkoy4.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy5.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy6.jpg",
+        "/u14zaferarnavutkoy/u14zaferarnavutkoy7.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy8.jpg", "/u14zaferarnavutkoy/u14zaferarnavutkoy9.jpg",
+        "/u14zaferarnavutkoy/u14zaferarnavutkoy10.jpg"
+      ]
+    },
+    {
+      id: 8,
+      title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
+      date: "01 Eylül 2026",
+      coverImage: "/3sporokulu/3sporokulu1.jpg",
+      colSpan: "col-span-1 md:col-span-2",
+      photos: [
+        "/3sporokulu/3sporokulu1.jpg", "/3sporokulu/3sporokulu2.jpg", "/3sporokulu/3sporokulu3.jpg",
+        "/3sporokulu/3sporokulu4.jpg", "/3sporokulu/3sporokulu5.jpg", "/3sporokulu/3sporokulu6.jpg",
+        "/3sporokulu/3sporokulu7.jpg", "/3sporokulu/3sporokulu8.jpg", "/3sporokulu/3sporokulu9.jpg"
       ]
     }
   ];
