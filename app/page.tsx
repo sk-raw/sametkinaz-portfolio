@@ -86,9 +86,19 @@ export default function Home() {
           <p className="text-lg md:text-xl text-neutral-300 mb-10 max-w-2xl mx-auto">
             Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.
           </p>
-          <Link href="#galeri" className="px-8 py-4 bg-orange-500 text-neutral-950 font-bold rounded-full hover:bg-orange-400 transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_40px_rgba(249,115,22,0.5)]">
+         
+          {/* Tıklama fonksiyonunu çalıştıran buton */}
+          <button 
+            onClick={() => {
+              const element = document.getElementById('galeri');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="px-8 py-4 bg-orange-500 text-neutral-950 font-bold rounded-full hover:bg-orange-400 transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] cursor-pointer"
+          >
             Albümleri İncele
-          </Link>
+          </button>
         </div>
       </section>
 
