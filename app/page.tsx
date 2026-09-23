@@ -430,7 +430,7 @@ export default function Home() {
           >
             <div className="relative w-full h-[450px] md:h-[520px]">
               <Image 
-                src="/ben.png" 
+                src="/ben.jpg" 
                 alt="Samet KINAZ"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
