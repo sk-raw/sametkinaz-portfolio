@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
-  title: "Samet Kınaz | Spor Fotoğrafçısı",
+  title: "Samet KINAZ | Spor Fotoğrafçısı",
   description: "Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.",
   openGraph: {
-    title: "Samet Kınaz | Spor Fotoğrafçısı",
+    title: "Samet KINAZ | Spor Fotoğrafçısı",
     description: "Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.",
     url: "/",
-    siteName: "Samet Kınaz Portfolyo",
+    siteName: "Samet KINAZ Portfolyo",
     images: [
       {
-        url: "/kapak.jpg", // WhatsApp, Instagram vb. yerlerde link paylaşıldığında çıkacak görsel
+        url: "/kapak.jpg",
         width: 1200,
         height: 630,
-        alt: "Samet Kınaz Saha Kenarı Çekimi",
+        alt: "Samet KINAZ Saha Kenarı Çekimi",
       },
     ],
     locale: "tr_TR",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samet Kınaz | Spor Fotoğrafçısı",
+    title: "Samet KINAZ | Spor Fotoğrafçısı",
     description: "Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.",
     images: ["/kapak.jpg"],
   },

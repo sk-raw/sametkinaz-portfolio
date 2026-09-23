@@ -141,7 +141,7 @@ export default function Home() {
       <header className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-widest uppercase">
-            Samet <span className="text-orange-500">Kınaz</span>
+            Samet <span className="text-orange-500">KINAZ</span>
           </div>
           <nav className="hidden md:flex gap-8 text-sm font-medium text-neutral-400">
             <button 
@@ -226,7 +226,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GALERİ SECTION (Tam 3 öne çıkan albüm ile düzeltildi) */}
+      {/* GALERİ SECTION */}
       <section id="galeri" className="max-w-7xl mx-auto px-4 py-24">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -430,13 +430,13 @@ export default function Home() {
           >
             <Image 
               src="/ben.jpg" 
-              alt="Samet Kınaz"
+              alt="Samet KINAZ"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent flex items-end p-6">
               <p className="text-sm font-medium text-neutral-200 backdrop-blur-md bg-neutral-950/40 px-4 py-2 rounded-lg border border-neutral-800/50">
-                📸 Samet Kınaz
+                📸 Samet KINAZ
               </p>
             </div>
           </motion.div>
@@ -469,7 +469,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-bold transition-colors text-lg md:text-xl"
           >
-            @_sk.raw <span className="text-sm"></span>
+            @_sk.raw <span className="text-sm">&nearrow;</span>
           </a>
         </div>
 
@@ -538,29 +538,135 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* FOOTER */}
-      <footer id="iletisim" className="border-t border-neutral-900 bg-neutral-900/10 py-16 text-center text-neutral-400">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-white mb-6">Birlikte Çalışalım</h2>
-          <p className="mb-8 text-lg">Maç akreditasyonları, özel çekim talepleri ve iş birlikleri için portfolyo hesabıma ulaşabilirsiniz.</p>
+      {/* FOOTER & ÇEKİM TALEP FORMU */}
+      <footer id="iletisim" className="border-t border-neutral-900 bg-neutral-900/10 py-24 text-neutral-400">
+        <div className="max-w-4xl mx-auto px-4">
           
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-            <a 
-              href="https://instagram.com/_sk.raw" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="px-8 py-4 bg-neutral-900 hover:bg-orange-500 hover:text-white text-orange-500 font-semibold rounded-full border border-neutral-800 transition-all duration-300 shadow-lg"
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <p className="text-orange-500 font-bold uppercase tracking-wider text-sm mb-2">İletişim & Rezervasyon</p>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">Birlikte Çalışalım</h2>
+            <p className="text-lg max-w-xl mx-auto">
+              Maç akreditasyonları, özel kulüp çekimleri ve projeleriniz için aşağıdaki formu doldurarak doğrudan bana ulaşabilirsiniz.
+            </p>
+          </motion.div>
+
+          {/* ÇEKİM TALEP FORMU KARTI */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="bg-neutral-900/80 border border-neutral-800 rounded-3xl p-8 md:p-12 shadow-2xl backdrop-blur-xl"
+          >
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+                const club = (form.elements.namedItem('club') as HTMLInputElement).value;
+                const service = (form.elements.namedItem('service') as HTMLSelectElement).value;
+                const date = (form.elements.namedItem('date') as HTMLInputElement).value;
+                const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+
+                const whatsappNumber = "905432254662"; 
+                const text = `Merhaba Samet, web siten üzerinden ulaşıyorum.%0A%0A*İsim/Kulüp:* ${name} (${club})%0A*Hizmet:* ${service}%0A*Tarih:* ${date}%0A*Mesaj:* ${message}`;
+                
+                window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+              }}
+              className="space-y-6"
             >
-              @_sk.raw 'a Mesaj At
-            </a>
-            <a 
-              href="mailto:iletisim@sametkinaz.com" 
-              className="px-8 py-4 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold rounded-full border border-neutral-800 transition-all duration-300 shadow-lg"
-            >
-              E-Posta Gönder
-            </a>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Adınız / Yetkili</label>
+                  <input 
+                    type="text" 
+                    name="name" 
+                    required 
+                    placeholder="Örn: Ahmet Yılmaz" 
+                    className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500 transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Kulüp / Kurum Adı</label>
+                  <input 
+                    type="text" 
+                    name="club" 
+                    placeholder="Örn: Zeytinburnu Zaferspor" 
+                    className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500 transition-colors text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Çekim Türü</label>
+                  <select 
+                    name="service" 
+                    className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors text-sm cursor-pointer"
+                  >
+                    <option value="Maç Günü / Karşılaşma Çekimi">Maç Günü / Karşılaşma Çekimi</option>
+                    <option value="Spor Okulu / İdman Çekimi">Spor Okulu / İdman Çekimi</option>
+                    <option value="Özel Oyuncu Portresi">Özel Oyuncu Portresi</option>
+                    <option value="Basın / Akreditasyon İş Birliği">Basın / Akreditasyon İş Birliği</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Planlanan Tarih</label>
+                  <input 
+                    type="date" 
+                    name="date" 
+                    className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors text-sm cursor-pointer"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Detaylar / Mesajınız</label>
+                <textarea 
+                  name="message" 
+                  rows={4} 
+                  placeholder="Maç sahası, saat veya özel isteklerinizi belirtebilirsiniz..."
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500 transition-colors text-sm resize-none"
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit"
+                className="w-full py-4 bg-orange-500 text-neutral-950 font-extrabold rounded-xl hover:bg-orange-400 transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.2)] cursor-pointer tracking-wider uppercase text-sm"
+              >
+                Çekim Talebi Gönder &rarr;
+              </button>
+            </form>
+
+            <div className="mt-8 pt-8 border-t border-neutral-800 flex flex-col sm:flex-row justify-center items-center gap-6 text-sm">
+              <a 
+                href="https://instagram.com/_sk.raw" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="text-orange-500 hover:text-orange-400 font-semibold transition-colors flex items-center gap-2"
+              >
+                📸 @_sk.raw üzerinden mesaj at
+              </a>
+              <span className="hidden sm:inline text-neutral-700">•</span>
+              <a 
+                href="mailto:iletisim@sametkinaz.com" 
+                className="text-neutral-300 hover:text-white font-semibold transition-colors"
+              >
+                ✉️ iletisim@sametkinaz.com
+              </a>
+            </div>
+          </motion.div>
+
+          <div className="mt-16 text-center text-neutral-500 text-sm">
+            <p>&copy; {new Date().getFullYear()} Samet KINAZ. Tüm hakları saklıdır.</p>
           </div>
-          <p className="text-sm">&copy; {new Date().getFullYear()} Samet Kınaz. Tüm hakları saklıdır.</p>
+
         </div>
       </footer>
     </main>

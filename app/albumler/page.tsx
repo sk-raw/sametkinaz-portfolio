@@ -105,7 +105,6 @@ export default function TumAlbumler() {
   const [selectedAlbum, setSelectedAlbum] = useState<any>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
 
-  // Klavye yön tuşları kontrolü (Lightbox için)
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (activePhotoIndex === null || !selectedAlbum) return;
 
@@ -134,7 +133,7 @@ export default function TumAlbumler() {
       <header className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-widest uppercase hover:text-orange-500 transition-colors">
-            Samet <span className="text-orange-500">Kınaz</span>
+            Samet <span className="text-orange-500">KINAZ</span>
           </Link>
           <Link 
             href="/"
@@ -299,7 +298,7 @@ export default function TumAlbumler() {
 
       {/* FOOTER */}
       <footer className="border-t border-neutral-900 bg-neutral-900/10 py-12 text-center text-neutral-400">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Samet Kınaz. Tüm hakları saklıdır.</p>
+        <p className="text-sm">&copy; {new Date().getFullYear()} Samet KINAZ. Tüm hakları saklıdır.</p>
       </footer>
     </main>
   );
