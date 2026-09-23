@@ -613,7 +613,6 @@ export default function Home() {
                     <option value="Maç Günü / Karşılaşma Çekimi">Maç Günü / Karşılaşma Çekimi</option>
                     <option value="Spor Okulu / İdman Çekimi">Spor Okulu / İdman Çekimi</option>
                     <option value="Özel Oyuncu Portresi">Özel Oyuncu Portresi</option>
-                    <option value="Basın / Akreditasyon İş Birliği">Basın / Akreditasyon İş Birliği</option>
                   </select>
                 </div>
                 <div>
