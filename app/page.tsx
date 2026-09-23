@@ -597,6 +597,7 @@ export default function Home() {
                   <input 
                     type="text" 
                     name="club" 
+                    required 
                     placeholder="Örn: Zeytinburnu Zaferspor" 
                     className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500 transition-colors text-sm"
                   />
@@ -608,8 +609,10 @@ export default function Home() {
                   <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Çekim Türü</label>
                   <select 
                     name="service" 
+                    required
                     className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors text-sm cursor-pointer"
                   >
+                    <option value="" disabled selected>Seçiniz...</option>
                     <option value="Maç Günü / Karşılaşma Çekimi">Maç Günü / Karşılaşma Çekimi</option>
                     <option value="Spor Okulu / İdman Çekimi">Spor Okulu / İdman Çekimi</option>
                     <option value="Özel Oyuncu Portresi">Özel Oyuncu Portresi</option>
@@ -620,6 +623,7 @@ export default function Home() {
                   <input 
                     type="date" 
                     name="date" 
+                    required 
                     className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors text-sm cursor-pointer"
                   />
                 </div>
@@ -630,6 +634,7 @@ export default function Home() {
                 <textarea 
                   name="message" 
                   rows={4} 
+                  required 
                   placeholder="Maç sahası, saat veya özel isteklerinizi belirtebilirsiniz..."
                   className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500 transition-colors text-sm resize-none"
                 ></textarea>
