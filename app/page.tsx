@@ -428,7 +428,6 @@ export default function Home() {
             transition={{ duration: 0.7 }}
             className="relative w-full rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl bg-neutral-900 group"
           >
-            {/* Fotoğrafın orijinal oranını koruyarak boşluk kalmadan tam oturması sağlandı */}
             <div className="relative w-full h-[450px] md:h-[520px]">
               <Image 
                 src="/ben.png" 
@@ -613,9 +612,10 @@ export default function Home() {
                   <select 
                     name="service" 
                     required
+                    defaultValue=""
                     className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors text-sm cursor-pointer"
                   >
-                    <option value="" disabled selected>Seçiniz...</option>
+                    <option value="" disabled>Seçiniz...</option>
                     <option value="Maç Günü / Karşılaşma Çekimi">Maç Günü / Karşılaşma Çekimi</option>
                     <option value="Spor Okulu / İdman Çekimi">Spor Okulu / İdman Çekimi</option>
                     <option value="Özel Oyuncu Portresi">Özel Oyuncu Portresi</option>
