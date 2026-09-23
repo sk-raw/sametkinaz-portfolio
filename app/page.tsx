@@ -426,16 +426,19 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
-            className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl bg-neutral-900 group"
+            className="relative w-full rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl bg-neutral-900 group"
           >
-            <Image 
-              src="/ben.jpg" 
-              alt="Samet KINAZ"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent flex items-end p-6">
-              <p className="text-sm font-medium text-neutral-200 backdrop-blur-md bg-neutral-950/40 px-4 py-2 rounded-lg border border-neutral-800/50">
+            {/* Fotoğrafın orijinal oranını koruyarak boşluk kalmadan tam oturması sağlandı */}
+            <div className="relative w-full h-[450px] md:h-[520px]">
+              <Image 
+                src="/ben.png" 
+                alt="Samet KINAZ"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-neutral-950/90 via-neutral-950/40 to-transparent p-6 flex items-end">
+              <p className="text-sm font-medium text-neutral-200 backdrop-blur-md bg-neutral-950/60 px-4 py-2 rounded-lg border border-neutral-800/50">
                 📸 Samet KINAZ
               </p>
             </div>
