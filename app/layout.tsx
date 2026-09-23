@@ -15,14 +15,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   title: "Samet Kınaz | Spor Fotoğrafçısı",
   description: "Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.",
+  openGraph: {
+    title: "Samet Kınaz | Spor Fotoğrafçısı",
+    description: "Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.",
+    url: "/",
+    siteName: "Samet Kınaz Portfolyo",
+    images: [
+      {
+        url: "/kapak.jpg", // WhatsApp, Instagram vb. yerlerde link paylaşıldığında çıkacak görsel
+        width: 1200,
+        height: 630,
+        alt: "Samet Kınaz Saha Kenarı Çekimi",
+      },
+    ],
+    locale: "tr_TR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Samet Kınaz | Spor Fotoğrafçısı",
+    description: "Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.",
+    images: ["/kapak.jpg"],
+  },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      lang="en"
+      lang="tr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <Analytics />
