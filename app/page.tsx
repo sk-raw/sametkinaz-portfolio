@@ -274,7 +274,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-bold transition-colors text-lg md:text-xl"
           >
-            @_sk.raw <span className="text-sm">&nearrow;</span>
+            @_sk.raw <span className="text-sm"></span>
           </a>
         </div>
 
