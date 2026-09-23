@@ -58,14 +58,38 @@ export default function Home() {
             Samet <span className="text-orange-500">Kınaz</span>
           </div>
           <nav className="hidden md:flex gap-8 text-sm font-medium text-neutral-400">
-            <Link href="#galeri" className="hover:text-white transition-colors">Portfolyo</Link>
-            <Link href="#ekipman" className="hover:text-white transition-colors">Ekipman</Link>
-            <Link href="#iletisim" className="hover:text-white transition-colors">İletişim</Link>
+            <button 
+              onClick={() => {
+                const element = document.getElementById('galeri');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-white transition-colors uppercase tracking-wider"
+            >
+              Portfolyo
+            </button>
+            <button 
+              onClick={() => {
+                const element = document.getElementById('ekipman');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-white transition-colors uppercase tracking-wider"
+            >
+              Ekipman
+            </button>
+            <button 
+              onClick={() => {
+                const element = document.getElementById('iletisim');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-white transition-colors uppercase tracking-wider"
+            >
+              İletişim
+            </button>
           </nav>
         </div>
       </header>
 
-     {/* HERO SECTION */}
+      {/* HERO SECTION */}
       <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
         <div className="absolute inset-0 z-0 opacity-100">
           <Image 
@@ -86,8 +110,8 @@ export default function Home() {
           <p className="text-lg md:text-xl text-neutral-300 mb-10 max-w-2xl mx-auto">
             Amatör liglerin ruhunu, futbolun hızını ve mücadelesini profesyonel bir gözle dijitale taşıyorum.
           </p>
-         
-          {/* Tıklama fonksiyonunu çalıştıran buton */}
+          
+          {/* Tıklama fonksiyonunu çalıştıran smooth scroll buton */}
           <button 
             onClick={() => {
               const element = document.getElementById('galeri');
@@ -102,6 +126,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* GALERİ SECTION */}
       <section id="galeri" className="max-w-7xl mx-auto px-4 py-24">
         <div className="flex items-end justify-between mb-12">
           <div>
@@ -144,6 +169,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ALBÜM MODAL */}
       {selectedAlbum && (
         <div className="fixed inset-0 z-50 bg-neutral-950/95 backdrop-blur-xl overflow-y-auto">
           <div className="sticky top-0 z-50 bg-neutral-950/80 backdrop-blur border-b border-neutral-800 p-4 md:p-6 flex justify-between items-center">
@@ -174,41 +200,150 @@ export default function Home() {
         </div>
       )}
 
-      <section id="ekipman" className="border-t border-neutral-900 bg-neutral-900/30 py-24">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
+      {/* VİZÖRÜN ARKASINDA / HAKKIMDA & EKİPMAN SECTION */}
+      <section id="ekipman" className="py-24 px-4 max-w-7xl mx-auto border-t border-neutral-900">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Sol Taraf: Metin ve Ekipman Kartları */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Vizörün Arkasında</h2>
-            <p className="text-neutral-400 text-lg leading-relaxed mb-6">
+            <div className="inline-block px-3 py-1 mb-4 rounded-full bg-orange-500/10 text-orange-400 text-xs font-bold tracking-widest uppercase border border-orange-500/20">
+              Spor Fotoğrafçısı
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-white">
+              Vizörün Arkasında
+            </h2>
+            
+            <p className="text-neutral-300 text-lg leading-relaxed mb-8">
               Futbol sadece 90 dakikalık bir oyun değil; içinde sevinç, hayal kırıklığı ve büyük bir mücadele barındıran bir hikaye. Sahadaki bu ham duyguları dondurup ölümsüzleştirmek en büyük tutkum.
             </p>
+
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center gap-4">
-                <div className="w-2 h-12 bg-orange-500 rounded-full"></div>
+              <div className="p-4 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center gap-4 transition-all hover:border-neutral-700">
+                <div className="w-2 h-10 bg-orange-500 rounded-full" />
                 <div>
-                  <p className="text-sm text-neutral-500">Ana Gövde</p>
-                  <p className="font-semibold">Canon 1200D DSLR</p>
+                  <p className="text-xs text-neutral-400 uppercase tracking-wider font-semibold">Ana Gövde</p>
+                  <p className="text-white font-bold text-lg">Canon 1200D DSLR</p>
                 </div>
               </div>
-              <div className="p-4 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center gap-4">
-                <div className="w-2 h-12 bg-orange-500 rounded-full"></div>
+
+              <div className="p-4 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center gap-4 transition-all hover:border-neutral-700">
+                <div className="w-2 h-10 bg-orange-500 rounded-full" />
                 <div>
-                  <p className="text-sm text-neutral-500">Telefoto Lens</p>
-                  <p className="font-semibold">Canon EF-S 55-250mm f/4-5.6 IS II</p>
+                  <p className="text-xs text-neutral-400 uppercase tracking-wider font-semibold">Telefoto Lens</p>
+                  <p className="text-white font-bold text-lg">Canon EF-S 55-250mm f/4-5.6 IS II</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="relative h-[500px] rounded-3xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+
+          {/* Sağ Taraf: Kendi Fotoğrafın */}
+          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl bg-neutral-900 group">
             <Image 
-              src="https://images.unsplash.com/photo-1516331165147-380d64a5006b?q=80&w=800&auto=format&fit=crop" 
-              alt="Spor Fotoğrafçısı"
+              src="/ben.jpg" 
+              alt="Samet Kınaz"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent flex items-end p-6">
+              <p className="text-sm font-medium text-neutral-200 backdrop-blur-md bg-neutral-950/40 px-4 py-2 rounded-lg border border-neutral-800/50">
+                📸 Samet Kınaz
+              </p>
+            </div>
           </div>
+
         </div>
       </section>
 
+      {/* INSTAGRAM VİTRİNİ SECTION */}
+      <section className="py-24 px-4 max-w-7xl mx-auto border-t border-neutral-900 text-center">
+        <div className="mb-12">
+          <div className="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-gradient-to-tr from-yellow-500 via-red-500 to-fuchsia-500">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-white">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
+            Sahadan Anlık Kareler
+          </h2>
+          <a 
+            href="https://instagram.com/_sk.raw" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-bold transition-colors text-lg md:text-xl"
+          >
+            @_sk.raw <span className="text-sm">&nearrow;</span>
+          </a>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
+            <Image 
+              src="/sporokulu/sporokulu1.jpg" 
+              alt="Instagram Post 1" 
+              fill 
+              className="object-cover transition-transform duration-700 group-hover:scale-110" 
+            />
+            <div className="absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-sm">
+              <span className="text-white font-bold flex items-center gap-4 text-lg">
+                <span>🤍 İncele</span>
+              </span>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
+            <Image 
+              src="/u14zaferidman/u14zaferidman2.jpg" 
+              alt="Instagram Post 2" 
+              fill 
+              className="object-cover transition-transform duration-700 group-hover:scale-110" 
+            />
+            <div className="absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-sm">
+              <span className="text-white font-bold flex items-center gap-4 text-lg">
+                <span>🤍 İncele</span>
+              </span>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
+            <Image 
+              src="/u11zaferselvi/u11zaferselvi3.jpg" 
+              alt="Instagram Post 3" 
+              fill 
+              className="object-cover transition-transform duration-700 group-hover:scale-110" 
+            />
+            <div className="absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-sm">
+              <span className="text-white font-bold flex items-center gap-4 text-lg">
+                <span>🤍 İncele</span>
+              </span>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
+            <Image 
+              src="/u14zaferarnavutkoy/u14zaferarnavutkoy4.jpg" 
+              alt="Instagram Post 4" 
+              fill 
+              className="object-cover transition-transform duration-700 group-hover:scale-110" 
+            />
+            <div className="absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-sm">
+              <span className="text-white font-bold flex items-center gap-4 text-lg">
+                <span>🤍 İncele</span>
+              </span>
+            </div>
+          </a>
+        </div>
+        
+        <div className="mt-10">
+           <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border border-neutral-700 hover:border-orange-500 text-neutral-300 hover:text-white rounded-full transition-colors text-sm font-semibold">
+             Daha fazlası için Instagram'a git
+           </a>
+        </div>
+      </section>
+
+      {/* FOOTER & İLETİŞİM SECTION */}
       <footer id="iletisim" className="border-t border-neutral-900 bg-neutral-900/10 py-16 text-center text-neutral-400">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-white mb-6">Birlikte Çalışalım</h2>
