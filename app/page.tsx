@@ -226,7 +226,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GALERİ SECTION */}
+      {/* GALERİ SECTION (Tam 3 öne çıkan albüm ile düzeltildi) */}
       <section id="galeri" className="max-w-7xl mx-auto px-4 py-24">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -245,7 +245,7 @@ export default function Home() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {albums.slice(0, 6).map((album, index) => (
+          {albums.slice(0, 3).map((album, index) => (
             <motion.div 
               key={album.id}
               initial={{ opacity: 0, y: 30 }}
