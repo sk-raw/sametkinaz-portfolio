@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
-  // 1. HAFTA MAÇ TARİHİ: 10 EKİM 2026 CUMARTESİ, 10:30 (Ay indexi: Ekim = 9)
-  const matchDate = new Date(2026, 9, 10, 10, 30);
+  // EN YAKIN MAÇ: U14/A Ligi 2. Hafta - 25 Ekim 2026 Pazar, 10:45 (Ay indexi: Ekim = 9)
+  const matchDate = new Date(2026, 9, 25, 10, 45);
   
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -27,7 +27,19 @@ export default function Home() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [matchDate]);
+
+  const pastMatches = [
+    { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "3 - 1" },
+    { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "4 - 2" },
+    { id: 2, league: "U17/A Ligi - 1. Hafta", date: "11 Ekim 2026", home: "Bağcılar İstoç Spor", away: "Zeytinburnu Zafer Spor", score: "3 - 0" },
+    { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "1 - 2" },
+  ];
+
+  const upcomingMatches = [
+    { id: 5, league: "U14/A Ligi - 2. Hafta", date: "25 Ekim 2026 Pazar • 10:45", home: "Haznedar İdman Ocağı Spor", away: "Zeytinburnu Zafer Spor", location: "Güngören Belediye Sahası" },
+    { id: 6, league: "U14/A Ligi - 3. Hafta", date: "28 Ekim 2026 Çarşamba • 15:00", home: "Zeytinburnu Zafer Spor", away: "Sultangazi Sultançiftliği Spor", location: "Zeytinburnu Bld. Hasan Doğan Sahası" }
+  ];
 
   const albums = [
     {
@@ -169,6 +181,15 @@ export default function Home() {
           <nav className="hidden md:flex gap-8 text-sm font-medium text-neutral-400">
             <button 
               onClick={() => {
+                const element = document.getElementById('fikstur');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-white transition-colors uppercase tracking-wider cursor-pointer"
+            >
+              Fikstür
+            </button>
+            <button 
+              onClick={() => {
                 const element = document.getElementById('galeri');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
@@ -249,7 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1. HAFTA MAÇ SAYACI BANNERI */}
+      {/* SIRADAKİ MAÇ SAYACI BANNERI */}
       <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -265,10 +286,10 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">1. Hafta Maçı</p>
+                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">U14/A Ligi - 2. Hafta</p>
               </div>
-              <h3 className="text-white text-xl md:text-2xl font-extrabold">Zeytinburnu Zafer Spor vs. Trabzon 1453 Spor</h3>
-              <p className="text-neutral-400 text-sm mt-1">📅 10 Ekim 2026 Cumartesi • 10:30 • Zeytinburnu Bld. Hasan Doğan Sahası</p>
+              <h3 className="text-white text-xl md:text-2xl font-extrabold">Haznedar İdman Ocağı Spor vs. Zeytinburnu Zafer</h3>
+              <p className="text-neutral-400 text-sm mt-1">📅 25 Ekim 2026 Pazar • 10:45 • Güngören Belediye Sahası</p>
             </div>
           </div>
 
@@ -297,8 +318,70 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* FİKSTÜR VE MAÇ SONUÇLARI SECTION */}
+      <section id="fikstur" className="max-w-7xl mx-auto px-4 py-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center md:text-left"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">Fikstür & Maç Sonuçları</h2>
+          <p className="text-neutral-500">Zeytinburnu Zafer Spor U14/A ve U17/A Ligi programı.</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* YAKLAŞAN MAÇLAR */}
+          <div>
+            <h3 className="text-xl font-bold text-orange-500 mb-6 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-orange-500 inline-block animate-pulse" /> Yaklaşan Maçlar
+            </h3>
+            <div className="space-y-4">
+              {upcomingMatches.map((match) => (
+                <div key={match.id} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">{match.league}</p>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-white font-semibold">{match.home}</span>
+                      <span className="text-neutral-500 text-sm">vs</span>
+                      <span className="text-white font-semibold">{match.away}</span>
+                    </div>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <p className="text-sm font-bold text-neutral-300">{match.date}</p>
+                    <p className="text-xs text-neutral-500 mt-1">{match.location}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* OYNANAN MAÇLAR */}
+          <div>
+            <h3 className="text-xl font-bold text-neutral-300 mb-6 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-neutral-600 inline-block" /> Oynanan Maçlar
+            </h3>
+            <div className="space-y-4">
+              {pastMatches.map((match) => (
+                <div key={match.id} className="bg-neutral-950 border border-neutral-800/50 rounded-2xl p-5 flex items-center justify-between gap-4 opacity-80 hover:opacity-100 transition-opacity">
+                  <div className="flex-1">
+                    <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-2">{match.league} • {match.date}</p>
+                    <div className="flex items-center justify-between gap-4 bg-neutral-900 px-4 py-2 rounded-xl">
+                      <span className="text-sm font-semibold text-neutral-300 flex-1 text-right truncate">{match.home}</span>
+                      <span className="text-lg font-extrabold text-white bg-neutral-800 px-3 py-1 rounded-md">{match.score}</span>
+                      <span className="text-sm font-semibold text-neutral-300 flex-1 text-left truncate">{match.away}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* GALERİ SECTION */}
-      <section id="galeri" className="max-w-7xl mx-auto px-4 py-12">
+      <section id="galeri" className="max-w-7xl mx-auto px-4 py-12 border-t border-neutral-900/50">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
