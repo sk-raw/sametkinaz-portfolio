@@ -186,7 +186,7 @@ export default function Home() {
               }}
               className="hover:text-white transition-colors uppercase tracking-wider cursor-pointer"
             >
-              Fikstür
+              Çekim Takvimi
             </button>
             <button 
               onClick={() => {
@@ -281,12 +281,12 @@ export default function Home() {
         >
           <div className="flex items-center gap-6">
             <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 text-2xl flex-shrink-0">
-              ⚽
+              📸
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">U14/A Ligi - 2. Hafta</p>
+                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">Sıradaki Çekim (U14/A Ligi)</p>
               </div>
               <h3 className="text-white text-xl md:text-2xl font-extrabold">Haznedar İdman Ocağı Spor vs. Zeytinburnu Zafer</h3>
               <p className="text-neutral-400 text-sm mt-1">📅 25 Ekim 2026 Pazar • 10:45 • Güngören Belediye Sahası</p>
@@ -327,15 +327,15 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center md:text-left"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">Fikstür & Maç Sonuçları</h2>
-          <p className="text-neutral-500">Zeytinburnu Zafer Spor U14/A ve U17/A Ligi programı.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">Çekim Programı ve Maç Sonuçları</h2>
+          <p className="text-neutral-500">Zeytinburnu Zafer Spor U14/A ve U17/A Ligi çekim takvimi.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* YAKLAŞAN MAÇLAR */}
           <div>
             <h3 className="text-xl font-bold text-orange-500 mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-orange-500 inline-block animate-pulse" /> Yaklaşan Maçlar
+              <span className="w-2 h-2 rounded-full bg-orange-500 inline-block animate-pulse" /> Planlanan Çekimler
             </h3>
             <div className="space-y-4">
               {upcomingMatches.map((match) => (
@@ -360,7 +360,7 @@ export default function Home() {
           {/* OYNANAN MAÇLAR */}
           <div>
             <h3 className="text-xl font-bold text-neutral-300 mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-neutral-600 inline-block" /> Oynanan Maçlar
+              <span className="w-2 h-2 rounded-full bg-neutral-600 inline-block" /> Tamamlanan Çekimler
             </h3>
             <div className="space-y-4">
               {pastMatches.map((match) => (
