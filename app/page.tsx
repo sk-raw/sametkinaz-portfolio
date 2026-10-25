@@ -6,6 +6,29 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
+  // 1. HAFTA MAÇ TARİHİ: 10 EKİM 2026 CUMARTESİ, 10:30 (Ay indexi: Ekim = 9)
+  const matchDate = new Date(2026, 9, 10, 10, 30);
+  
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = matchDate.getTime() - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const albums = [
     {
       id: 1,
@@ -226,8 +249,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 1. HAFTA MAÇ SAYACI BANNERI */}
+      <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-neutral-900/90 border border-neutral-800 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl flex flex-col lg:flex-row items-center justify-between gap-8"
+        >
+          <div className="flex items-center gap-6">
+            <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 text-2xl flex-shrink-0">
+              ⚽
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">1. Hafta Maçı</p>
+              </div>
+              <h3 className="text-white text-xl md:text-2xl font-extrabold">Zeytinburnu Zafer Spor vs. Trabzon 1453 Spor</h3>
+              <p className="text-neutral-400 text-sm mt-1">📅 10 Ekim 2026 Cumartesi • 10:30 • Zeytinburnu Bld. Hasan Doğan Sahası</p>
+            </div>
+          </div>
+
+          {/* CANLI GERİ SAYIM SAYACI */}
+          <div className="flex items-center gap-3 bg-neutral-950/80 border border-neutral-800/80 px-6 py-4 rounded-2xl">
+            <div className="text-center px-2">
+              <span className="block text-2xl font-extrabold text-white">{timeLeft.days}</span>
+              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Gün</span>
+            </div>
+            <span className="text-neutral-600 font-bold">:</span>
+            <div className="text-center px-2">
+              <span className="block text-2xl font-extrabold text-white">{timeLeft.hours}</span>
+              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Saat</span>
+            </div>
+            <span className="text-neutral-600 font-bold">:</span>
+            <div className="text-center px-2">
+              <span className="block text-2xl font-extrabold text-white">{timeLeft.minutes}</span>
+              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Dakika</span>
+            </div>
+            <span className="text-neutral-600 font-bold">:</span>
+            <div className="text-center px-2">
+              <span className="block text-2xl font-extrabold text-orange-500">{timeLeft.seconds}</span>
+              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Saniye</span>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* GALERİ SECTION */}
-      <section id="galeri" className="max-w-7xl mx-auto px-4 py-24">
+      <section id="galeri" className="max-w-7xl mx-auto px-4 py-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
