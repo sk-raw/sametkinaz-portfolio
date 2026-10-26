@@ -6,15 +6,16 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
-  const pastMatches = [
+  // Manuel geçmiş maçlar listesi
+  const initialPastMatches = [
     { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "3 - 1" },
     { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "4 - 2" },
     { id: 2, league: "U17/A Ligi - 1. Hafta", date: "11 Ekim 2026", home: "Bağcılar İstoç Spor", away: "Zeytinburnu Zafer Spor", score: "3 - 0" },
     { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "1 - 2" },
   ];
 
-  // Planlanan çekimler (Tarih objeleriyle birlikte)
-  const upcomingMatches = [
+  // Tüm planlanan çekimler havuzu
+  const allUpcomingMatches = [
     { 
       id: 5, 
       league: "U14/A Ligi - 2. Hafta", 
@@ -22,7 +23,8 @@ export default function Home() {
       dateObj: new Date(2026, 9, 25, 10, 45), 
       home: "Haznedar İdman Ocağı Spor", 
       away: "Zeytinburnu Zafer", 
-      location: "Güngören Belediye Sahası" 
+      location: "Güngören Belediye Sahası",
+      score: "Oynandı / Bekleniyor"
     },
     { 
       id: 6, 
@@ -31,24 +33,43 @@ export default function Home() {
       dateObj: new Date(2026, 9, 28, 15, 0), 
       home: "Zeytinburnu Zafer Spor", 
       away: "Sultangazi Sultançiftliği Spor", 
-      location: "Zeytinburnu Bld. Hasan Doğan Sahası" 
+      location: "Zeytinburnu Bld. Hasan Doğan Sahası",
+      score: "Oynanacak"
     }
   ];
 
-  // Aktif sıradaki maçı bulma (Tarihi henüz geçmemiş ilk maçı seçer, kalmazsa son maçı tutar)
   const [activeMatchIndex, setActiveMatchIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [dynamicPastMatches, setDynamicPastMatches] = useState(initialPastMatches);
+  const [upcomingMatches, setUpcomingMatches] = useState(allUpcomingMatches);
 
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date().getTime();
       
-      // Süresi geçmemiş ilk maçı bul
-      let currentIndex = upcomingMatches.findIndex(m => m.dateObj.getTime() > now);
-      if (currentIndex === -1) currentIndex = upcomingMatches.length - 1; // Hepsi bittiyse sonuncuyu göster
+      // Süresi geçenleri ve henüz gelmeyenleri ayır
+      const upcoming = allUpcomingMatches.filter(m => m.dateObj.getTime() > now);
+      const passed = allUpcomingMatches.filter(m => m.dateObj.getTime() <= now);
+
+      setUpcomingMatches(upcoming.length > 0 ? upcoming : [allUpcomingMatches[allUpcomingMatches.length - 1]]);
+
+      // Tarihi geçen maçları otomatik olarak tamamlanan çekimler listesine ekle
+      const formattedPassed = passed.map(m => ({
+        id: m.id,
+        league: m.league,
+        date: m.dateStr.split(" • ")[0],
+        home: m.home,
+        away: m.away,
+        score: "Tamamlandı"
+      }));
+
+      setDynamicPastMatches([...initialPastMatches, ...formattedPassed]);
+
+      let currentIndex = allUpcomingMatches.findIndex(m => m.dateObj.getTime() > now);
+      if (currentIndex === -1) currentIndex = allUpcomingMatches.length - 1;
       
       setActiveMatchIndex(currentIndex);
-      const targetTime = upcomingMatches[currentIndex].dateObj.getTime();
+      const targetTime = allUpcomingMatches[currentIndex].dateObj.getTime();
       const distance = targetTime - now;
 
       if (distance > 0) {
@@ -66,7 +87,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const currentActiveMatch = upcomingMatches[activeMatchIndex];
+  const currentActiveMatch = allUpcomingMatches[activeMatchIndex] || allUpcomingMatches[0];
 
   const albums = [
     {
@@ -297,7 +318,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SIRADAKİ MAÇ SAYACI BANNERI (DİNAMİK) */}
+      {/* SIRADAKİ MAÇ SAYACI BANNERI */}
       <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -359,7 +380,7 @@ export default function Home() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* YAKLAŞAN MAÇLAR */}
+          {/* PLANLANAN ÇEKİMLER */}
           <div>
             <h3 className="text-xl font-bold text-orange-500 mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-orange-500 inline-block animate-pulse" /> Planlanan Çekimler
@@ -384,13 +405,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* OYNANAN MAÇLAR */}
           <div>
             <h3 className="text-xl font-bold text-neutral-300 mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-neutral-600 inline-block" /> Tamamlanan Çekimler
             </h3>
             <div className="space-y-4">
-              {pastMatches.map((match) => (
+              {dynamicPastMatches.map((match) => (
                 <div key={match.id} className="bg-neutral-950 border border-neutral-800/50 rounded-2xl p-5 flex items-center justify-between gap-4 opacity-80 hover:opacity-100 transition-opacity">
                   <div className="flex-1">
                     <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-2">{match.league} • {match.date}</p>
