@@ -20,7 +20,7 @@ export default function Home() {
       dateStr: "25 Ekim 2026 Pazar • 10:45", 
       dateObj: new Date(2026, 9, 25, 10, 45), 
       home: "Haznedar İdman Ocağı Spor", 
-      away: "Zeytinburnu Zafer", 
+      away: "Zeytinburnu Zafer Spor", 
       location: "Güngören Belediye Sahası" 
     },
     { 
