@@ -38,6 +38,7 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [dynamicPastMatches, setDynamicPastMatches] = useState(initialPastMatches);
   const [upcomingMatches, setUpcomingMatches] = useState(allUpcomingMatches);
+  const [showAllPast, setShowAllPast] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -57,7 +58,8 @@ export default function Home() {
         score: "Tamamlandı"
       }));
 
-      setDynamicPastMatches([...initialPastMatches, ...formattedPassed]);
+      // Set past matches, newest first
+      setDynamicPastMatches([...formattedPassed, ...initialPastMatches]);
 
       let currentIndex = allUpcomingMatches.findIndex(m => m.dateObj.getTime() > now);
       if (currentIndex === -1) currentIndex = allUpcomingMatches.length - 1;
@@ -82,6 +84,7 @@ export default function Home() {
   }, []);
 
   const currentActiveMatch = allUpcomingMatches[activeMatchIndex] || allUpcomingMatches[0];
+  const displayedPastMatches = showAllPast ? dynamicPastMatches : dynamicPastMatches.slice(0, 3);
 
   const albums = [
     {
@@ -412,7 +415,7 @@ export default function Home() {
           <p className="text-neutral-500">Zeytinburnu Zafer Spor U14/A ve U17/A Ligi çekim takvimi.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* PLANLANAN ÇEKİMLER */}
           <div>
             <h3 className="text-xl font-bold text-orange-500 mb-6 flex items-center gap-2">
@@ -438,23 +441,35 @@ export default function Home() {
             </div>
           </div>
 
+          {/* TAMAMLANAN ÇEKİMLER */}
           <div>
             <h3 className="text-xl font-bold text-neutral-300 mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-neutral-600 inline-block" /> Tamamlanan Çekimler
             </h3>
             <div className="space-y-4">
-              {dynamicPastMatches.map((match) => (
-                <div key={match.id} className="bg-neutral-950 border border-neutral-800/50 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-3 opacity-90 hover:opacity-100 transition-opacity">
-                  <div className="w-full sm:flex-1 text-center sm:text-left">
-                    <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-1">{match.league} • {match.date}</p>
-                  </div>
-                  <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 bg-neutral-900 px-4 py-3 rounded-xl">
-                    <span className="text-xs sm:text-sm font-semibold text-neutral-300 text-center sm:text-right flex-1 break-words">{match.home}</span>
-                    <span className="text-[11px] font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-md flex-shrink-0">{match.score}</span>
-                    <span className="text-xs sm:text-sm font-semibold text-neutral-300 text-center sm:text-left flex-1 break-words">{match.away}</span>
+              {displayedPastMatches.map((match) => (
+                <div key={match.id} className="bg-neutral-950 border border-neutral-800/50 rounded-2xl p-5 opacity-90 hover:opacity-100 transition-opacity">
+                  <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-3 text-center sm:text-left">
+                    {match.league} • {match.date}
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-neutral-900 px-4 py-3 rounded-xl">
+                    <span className="text-sm font-semibold text-neutral-300 w-full sm:flex-1 text-center sm:text-right truncate">{match.home}</span>
+                    <span className="text-[11px] font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-md flex-shrink-0">
+                      {match.score}
+                    </span>
+                    <span className="text-sm font-semibold text-neutral-300 w-full sm:flex-1 text-center sm:text-left truncate">{match.away}</span>
                   </div>
                 </div>
               ))}
+
+              {dynamicPastMatches.length > 3 && (
+                <button 
+                  onClick={() => setShowAllPast(!showAllPast)}
+                  className="w-full py-3 mt-2 rounded-xl border border-neutral-800 text-neutral-400 text-xs font-bold uppercase tracking-wider hover:bg-neutral-900 hover:text-white transition-colors cursor-pointer"
+                >
+                  {showAllPast ? "Daha Az Göster" : `Tümünü Gör (${dynamicPastMatches.length})`}
+                </button>
+              )}
             </div>
           </div>
         </div>
