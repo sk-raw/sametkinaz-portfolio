@@ -405,14 +405,14 @@ export default function Home() {
             </h3>
             <div className="space-y-4">
               {dynamicPastMatches.map((match) => (
-                <div key={match.id} className="bg-neutral-950 border border-neutral-800/50 rounded-2xl p-5 flex items-center justify-between gap-4 opacity-80 hover:opacity-100 transition-opacity">
-                  <div className="flex-1">
-                    <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-2">{match.league} • {match.date}</p>
-                    <div className="flex items-center justify-between gap-4 bg-neutral-900 px-4 py-2 rounded-xl">
-                      <span className="text-sm font-semibold text-neutral-300 flex-1 text-right truncate">{match.home}</span>
-                      <span className="text-xs font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-md">{match.score}</span>
-                      <span className="text-sm font-semibold text-neutral-300 flex-1 text-left truncate">{match.away}</span>
-                    </div>
+                <div key={match.id} className="bg-neutral-950 border border-neutral-800/50 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-3 opacity-90 hover:opacity-100 transition-opacity">
+                  <div className="w-full sm:flex-1 text-center sm:text-left">
+                    <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-1">{match.league} • {match.date}</p>
+                  </div>
+                  <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 bg-neutral-900 px-4 py-3 rounded-xl">
+                    <span className="text-xs sm:text-sm font-semibold text-neutral-300 text-center sm:text-right flex-1 break-words">{match.home}</span>
+                    <span className="text-[11px] font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-md flex-shrink-0">{match.score}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-neutral-300 text-center sm:text-left flex-1 break-words">{match.away}</span>
                   </div>
                 </div>
               ))}
