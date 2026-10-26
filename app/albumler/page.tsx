@@ -102,7 +102,7 @@ export default function Albumler() {
     },
     {
       id: 6,
-      title: "Spor Okulu Antrenmanı (Bölüm 1)",
+      title: "Spor Okulu Antrenmanı",
       date: "Eylül 2026",
       coverImage: "/1sporokulu/1sporokulu1.jpg",
       photos: [
@@ -114,7 +114,7 @@ export default function Albumler() {
     },
     {
       id: 7,
-      title: "Spor Okulu Antrenmanı (Bölüm 2)",
+      title: "Spor Okulu Antrenmanı",
       date: "Eylül 2026",
       coverImage: "/2sporokulu/2sporokulu1.jpg",
       photos: [
@@ -126,7 +126,7 @@ export default function Albumler() {
     },
     {
       id: 8,
-      title: "Spor Okulu Antrenmanı (Bölüm 3)",
+      title: "Spor Okulu Antrenmanı",
       date: "Eylül 2026",
       coverImage: "/3sporokulu/3sporokulu1.jpg",
       photos: [
