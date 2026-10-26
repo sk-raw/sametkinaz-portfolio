@@ -6,15 +6,50 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
-  // EN YAKIN MAÇ: U14/A Ligi 2. Hafta - 25 Ekim 2026 Pazar, 10:45 (Ay indexi: Ekim = 9)
-  const matchDate = new Date(2026, 9, 25, 10, 45);
-  
+  const pastMatches = [
+    { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "3 - 1" },
+    { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "4 - 2" },
+    { id: 2, league: "U17/A Ligi - 1. Hafta", date: "11 Ekim 2026", home: "Bağcılar İstoç Spor", away: "Zeytinburnu Zafer Spor", score: "3 - 0" },
+    { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "1 - 2" },
+  ];
+
+  // Planlanan çekimler (Tarih objeleriyle birlikte)
+  const upcomingMatches = [
+    { 
+      id: 5, 
+      league: "U14/A Ligi - 2. Hafta", 
+      dateStr: "25 Ekim 2026 Pazar • 10:45", 
+      dateObj: new Date(2026, 9, 25, 10, 45), 
+      home: "Haznedar İdman Ocağı Spor", 
+      away: "Zeytinburnu Zafer", 
+      location: "Güngören Belediye Sahası" 
+    },
+    { 
+      id: 6, 
+      league: "U14/A Ligi - 3. Hafta", 
+      dateStr: "28 Ekim 2026 Çarşamba • 15:00", 
+      dateObj: new Date(2026, 9, 28, 15, 0), 
+      home: "Zeytinburnu Zafer Spor", 
+      away: "Sultangazi Sultançiftliği Spor", 
+      location: "Zeytinburnu Bld. Hasan Doğan Sahası" 
+    }
+  ];
+
+  // Aktif sıradaki maçı bulma (Tarihi henüz geçmemiş ilk maçı seçer, kalmazsa son maçı tutar)
+  const [activeMatchIndex, setActiveMatchIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date().getTime();
-      const distance = matchDate.getTime() - now;
+      
+      // Süresi geçmemiş ilk maçı bul
+      let currentIndex = upcomingMatches.findIndex(m => m.dateObj.getTime() > now);
+      if (currentIndex === -1) currentIndex = upcomingMatches.length - 1; // Hepsi bittiyse sonuncuyu göster
+      
+      setActiveMatchIndex(currentIndex);
+      const targetTime = upcomingMatches[currentIndex].dateObj.getTime();
+      const distance = targetTime - now;
 
       if (distance > 0) {
         setTimeLeft({
@@ -23,23 +58,15 @@ export default function Home() {
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
         });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [matchDate]);
+  }, []);
 
-  const pastMatches = [
-    { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "3 - 1" },
-    { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "4 - 2" },
-    { id: 2, league: "U17/A Ligi - 1. Hafta", date: "11 Ekim 2026", home: "Bağcılar İstoç Spor", away: "Zeytinburnu Zafer Spor", score: "3 - 0" },
-    { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "1 - 2" },
-  ];
-
-  const upcomingMatches = [
-    { id: 5, league: "U14/A Ligi - 2. Hafta", date: "25 Ekim 2026 Pazar • 10:45", home: "Haznedar İdman Ocağı Spor", away: "Zeytinburnu Zafer Spor", location: "Güngören Belediye Sahası" },
-    { id: 6, league: "U14/A Ligi - 3. Hafta", date: "28 Ekim 2026 Çarşamba • 15:00", home: "Zeytinburnu Zafer Spor", away: "Sultangazi Sultançiftliği Spor", location: "Zeytinburnu Bld. Hasan Doğan Sahası" }
-  ];
+  const currentActiveMatch = upcomingMatches[activeMatchIndex];
 
   const albums = [
     {
@@ -270,7 +297,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SIRADAKİ MAÇ SAYACI BANNERI */}
+      {/* SIRADAKİ MAÇ SAYACI BANNERI (DİNAMİK) */}
       <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -286,10 +313,10 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">Sıradaki Çekim (U14/A Ligi)</p>
+                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">Sıradaki Çekim ({currentActiveMatch.league})</p>
               </div>
-              <h3 className="text-white text-xl md:text-2xl font-extrabold">Haznedar İdman Ocağı Spor vs. Zeytinburnu Zafer</h3>
-              <p className="text-neutral-400 text-sm mt-1">📅 25 Ekim 2026 Pazar • 10:45 • Güngören Belediye Sahası</p>
+              <h3 className="text-white text-xl md:text-2xl font-extrabold">{currentActiveMatch.home} vs. {currentActiveMatch.away}</h3>
+              <p className="text-neutral-400 text-sm mt-1">📅 {currentActiveMatch.dateStr} • {currentActiveMatch.location}</p>
             </div>
           </div>
 
@@ -318,7 +345,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FİKSTÜR VE MAÇ SONUÇLARI SECTION */}
+      {/* ÇEKİM PROGRAMI VE MAÇ SONUÇLARI SECTION */}
       <section id="fikstur" className="max-w-7xl mx-auto px-4 py-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -349,7 +376,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="text-left sm:text-right">
-                    <p className="text-sm font-bold text-neutral-300">{match.date}</p>
+                    <p className="text-sm font-bold text-neutral-300">{match.dateStr}</p>
                     <p className="text-xs text-neutral-500 mt-1">{match.location}</p>
                   </div>
                 </div>
