@@ -86,7 +86,7 @@ export default function Home() {
   const albums = [
     {
       id: 9,
-      title: "U14/A Ligi Resmi Karşılaşması: Haznedar İdman Ocağı Spor vs Zeytinburnu Zafer Spor",
+      title: "U14/A Ligi: Haznedar İdman Ocağı Spor vs Zeytinburnu Zafer Spor",
       date: "25 Ekim 2026",
       coverImage: "/u14mac/u14zfrmac1.jpg",
       colSpan: "col-span-1 md:col-span-2 md:row-span-2",
@@ -99,7 +99,7 @@ export default function Home() {
     },
     {
       id: 10,
-      title: "U17/A Ligi Resmi Karşılaşması: Gençosman Spor ve Kültür vs Zeytinburnu Zafer Spor",
+      title: "U17/A Ligi: Gençosman Spor ve Kültür vs Zeytinburnu Zafer Spor",
       date: "21 Ekim 2026",
       coverImage: "/u17genc/u17mac1.jpg",
       colSpan: "col-span-1",
@@ -112,7 +112,7 @@ export default function Home() {
     },
     {
       id: 11,
-      title: "U17/A Ligi Resmi Karşılaşması: Zeytinburnu Zafer Spor vs Güngören Spor Kulübü",
+      title: "U17/A Ligi: Zeytinburnu Zafer Spor vs Güngören Spor Kulübü",
       date: "24 Ekim 2026",
       coverImage: "/u17gngrn/u17zfrmac1.jpg",
       colSpan: "col-span-1",
