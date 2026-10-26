@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
-  // Manuel geçmiş maçlar listesi
+  // Manuel geçmiş maçlar listesi (Skorlar "Tamamlandı" olarak ayarlandı)
   const initialPastMatches = [
-    { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "3 - 1" },
-    { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "4 - 2" },
-    { id: 2, league: "U17/A Ligi - 1. Hafta", date: "11 Ekim 2026", home: "Bağcılar İstoç Spor", away: "Zeytinburnu Zafer Spor", score: "3 - 0" },
-    { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "1 - 2" },
+    { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "Tamamlandı" },
+    { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "Tamamlandı" },
+    { id: 2, league: "U17/A Ligi - 1. Hafta", date: "11 Ekim 2026", home: "Bağcılar İstoç Spor", away: "Zeytinburnu Zafer Spor", score: "Tamamlandı" },
+    { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "Tamamlandı" },
   ];
 
   // Tüm planlanan çekimler havuzu
@@ -23,8 +23,7 @@ export default function Home() {
       dateObj: new Date(2026, 9, 25, 10, 45), 
       home: "Haznedar İdman Ocağı Spor", 
       away: "Zeytinburnu Zafer", 
-      location: "Güngören Belediye Sahası",
-      score: "Oynandı / Bekleniyor"
+      location: "Güngören Belediye Sahası" 
     },
     { 
       id: 6, 
@@ -33,8 +32,7 @@ export default function Home() {
       dateObj: new Date(2026, 9, 28, 15, 0), 
       home: "Zeytinburnu Zafer Spor", 
       away: "Sultangazi Sultançiftliği Spor", 
-      location: "Zeytinburnu Bld. Hasan Doğan Sahası",
-      score: "Oynanacak"
+      location: "Zeytinburnu Bld. Hasan Doğan Sahası" 
     }
   ];
 
@@ -47,13 +45,11 @@ export default function Home() {
     const timer = setInterval(() => {
       const now = new Date().getTime();
       
-      // Süresi geçenleri ve henüz gelmeyenleri ayır
       const upcoming = allUpcomingMatches.filter(m => m.dateObj.getTime() > now);
       const passed = allUpcomingMatches.filter(m => m.dateObj.getTime() <= now);
 
       setUpcomingMatches(upcoming.length > 0 ? upcoming : [allUpcomingMatches[allUpcomingMatches.length - 1]]);
 
-      // Tarihi geçen maçları otomatik olarak tamamlanan çekimler listesine ekle
       const formattedPassed = passed.map(m => ({
         id: m.id,
         league: m.league,
@@ -416,7 +412,7 @@ export default function Home() {
                     <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mb-2">{match.league} • {match.date}</p>
                     <div className="flex items-center justify-between gap-4 bg-neutral-900 px-4 py-2 rounded-xl">
                       <span className="text-sm font-semibold text-neutral-300 flex-1 text-right truncate">{match.home}</span>
-                      <span className="text-lg font-extrabold text-white bg-neutral-800 px-3 py-1 rounded-md">{match.score}</span>
+                      <span className="text-xs font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-md">{match.score}</span>
                       <span className="text-sm font-semibold text-neutral-300 flex-1 text-left truncate">{match.away}</span>
                     </div>
                   </div>
