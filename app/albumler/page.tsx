@@ -5,8 +5,44 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function TumAlbumler() {
+export default function Albumler() {
   const albums = [
+    {
+      id: 9,
+      title: "U14/A Ligi Resmi Karşılaşması: Haznedar İdman Ocağı Spor vs Zeytinburnu Zafer Spor",
+      date: "25 Ekim 2026",
+      coverImage: "/u14mac/u14zfrmac1.jpg",
+      photos: [
+        "/u14mac/u14zfrmac1.jpg", "/u14mac/u14zfrmac2.jpg", "/u14mac/u14zfrmac3.jpg",
+        "/u14mac/u14zfrmac4.jpg", "/u14mac/u14zfrmac5.jpg", "/u14mac/u14zfrmac6.jpg",
+        "/u14mac/u14zfrmac7.jpg", "/u14mac/u14zfrmac8.jpg", "/u14mac/u14zfrmac9.jpg",
+        "/u14mac/u14zfrmac10.jpg", "/u14mac/u14zfrmac11.jpg", "/u14mac/u14zfrmac12.jpg"
+      ]
+    },
+    {
+      id: 10,
+      title: "U17/A Ligi Resmi Karşılaşması: Gençosman Spor ve Kültür vs Zeytinburnu Zafer Spor",
+      date: "21 Ekim 2026",
+      coverImage: "/u17genc/u17mac1.jpg",
+      photos: [
+        "/u17genc/u17mac1.jpg", "/u17genc/u17mac2.jpg", "/u17genc/u17mac3.jpg",
+        "/u17genc/u17mac4.jpg", "/u17genc/u17mac5.jpg", "/u17genc/u17mac6.jpg",
+        "/u17genc/u17mac7.jpg", "/u17genc/u17mac8.jpg", "/u17genc/u17mac9.jpg",
+        "/u17genc/u17mac10.jpg"
+      ]
+    },
+    {
+      id: 11,
+      title: "U17/A Ligi Resmi Karşılaşması: Zeytinburnu Zafer Spor vs Güngören Spor Kulübü",
+      date: "24 Ekim 2026",
+      coverImage: "/u17gngrn/u17zfrmac1.jpg",
+      photos: [
+        "/u17gngrn/u17zfrmac1.jpg", "/u17gngrn/u17zfrmac2.jpg", "/u17gngrn/u17zfrmac3.jpg",
+        "/u17gngrn/u17zfrmac4.jpg", "/u17gngrn/u17zfrmac5.jpg", "/u17gngrn/u17zfrmac6.jpg",
+        "/u17gngrn/u17zfrmac7.jpg", "/u17gngrn/u17zfrmac8.jpg", "/u17gngrn/u17zfrmac9.jpg",
+        "/u17gngrn/u17zfrmac10.jpg", "/u17gngrn/u17zfrmac11.jpg"
+      ]
+    },
     {
       id: 1,
       title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
@@ -127,40 +163,37 @@ export default function TumAlbumler() {
   }, [handleKeyDown]);
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-orange-500 selection:text-white">
+    <main className="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-orange-500 selection:text-white pt-24 pb-12">
       
       {/* HEADER */}
       <header className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-widest uppercase hover:text-orange-500 transition-colors">
+          <div className="text-xl font-bold tracking-widest uppercase">
             Samet <span className="text-orange-500">KINAZ</span>
-          </Link>
-          <Link 
-            href="/"
-            className="px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 text-sm font-semibold rounded-full border border-neutral-800 transition-colors flex items-center gap-2"
-          >
-            &larr; Ana Sayfaya Dön
-          </Link>
+          </div>
+          <nav className="flex gap-8 text-sm font-medium text-neutral-400">
+            <Link 
+              href="/"
+              className="hover:text-white transition-colors uppercase tracking-wider flex items-center gap-2"
+            >
+              &larr; Ana Sayfaya Dön
+            </Link>
+          </nav>
         </div>
       </header>
 
-      {/* SAYFA BAŞLIĞI */}
-      <section className="pt-36 pb-12 px-4 max-w-7xl mx-auto">
-        <motion.div
+      {/* TÜM ALBÜMLER LİSTESİ */}
+      <section className="max-w-7xl mx-auto px-4">
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="mb-12 text-center md:text-left"
         >
-          <p className="text-orange-500 font-bold uppercase tracking-wider text-sm mb-2">Arşiv</p>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Tüm Albümler</h1>
-          <p className="text-neutral-400 text-lg max-w-xl">
-            Sezon boyunca sahada yakaladığım tüm maç, idman ve özel karşılaşma kareleri.
-          </p>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Tüm <span className="text-orange-500">Albümler</span></h1>
+          <p className="text-neutral-500 text-lg">Geçmişten bugüne kayıt altına alınan tüm karşılaşmalar ve idmanlar.</p>
         </motion.div>
-      </section>
 
-      {/* TÜM ALBÜMLER GRID */}
-      <section className="max-w-7xl mx-auto px-4 pb-28">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {albums.map((album, index) => (
             <motion.div 
@@ -173,7 +206,7 @@ export default function TumAlbumler() {
                 setSelectedAlbum(album);
                 setActivePhotoIndex(null);
               }}
-              className="relative group overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer w-full aspect-square border border-neutral-800"
+              className="relative group overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer w-full aspect-square"
             >
               <Image 
                 src={album.coverImage}
@@ -186,9 +219,9 @@ export default function TumAlbumler() {
                   <div className="flex justify-between items-end">
                     <div>
                       <p className="text-orange-400 text-xs font-bold tracking-wider mb-1 uppercase">{album.date}</p>
-                      <h3 className="text-white text-xl font-medium">{album.title}</h3>
+                      <h3 className="text-white text-lg md:text-xl font-medium line-clamp-2">{album.title}</h3>
                     </div>
-                    <div className="bg-orange-500/20 text-orange-400 backdrop-blur px-3 py-1 rounded-full text-xs font-bold">
+                    <div className="bg-orange-500/20 text-orange-400 backdrop-blur px-3 py-1 rounded-full text-xs font-bold flex-shrink-0 ml-4">
                       {album.photos.length} Kare
                     </div>
                   </div>
@@ -295,11 +328,6 @@ export default function TumAlbumler() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* FOOTER */}
-      <footer className="border-t border-neutral-900 bg-neutral-900/10 py-12 text-center text-neutral-400">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Samet KINAZ. Tüm hakları saklıdır.</p>
-      </footer>
     </main>
   );
 }
