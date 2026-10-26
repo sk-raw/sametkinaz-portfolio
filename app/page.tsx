@@ -85,6 +85,45 @@ export default function Home() {
 
   const albums = [
     {
+      id: 9,
+      title: "U14/A Ligi Resmi Karşılaşması: Haznedar İdman Ocağı Spor vs Zeytinburnu Zafer Spor",
+      date: "25 Ekim 2026",
+      coverImage: "/u14mac/u14zfrmac1.jpg",
+      colSpan: "col-span-1 md:col-span-2 md:row-span-2",
+      photos: [
+        "/u14mac/u14zfrmac1.jpg", "/u14mac/u14zfrmac2.jpg", "/u14mac/u14zfrmac3.jpg",
+        "/u14mac/u14zfrmac4.jpg", "/u14mac/u14zfrmac5.jpg", "/u14mac/u14zfrmac6.jpg",
+        "/u14mac/u14zfrmac7.jpg", "/u14mac/u14zfrmac8.jpg", "/u14mac/u14zfrmac9.jpg",
+        "/u14mac/u14zfrmac10.jpg", "/u14mac/u14zfrmac11.jpg", "/u14mac/u14zfrmac12.jpg"
+      ]
+    },
+    {
+      id: 10,
+      title: "U17/A Ligi Resmi Karşılaşması: Gençosman Spor ve Kültür vs Zeytinburnu Zafer Spor",
+      date: "21 Ekim 2026",
+      coverImage: "/u17genc/u17mac1.jpg",
+      colSpan: "col-span-1",
+      photos: [
+        "/u17genc/u17mac1.jpg", "/u17genc/u17mac2.jpg", "/u17genc/u17mac3.jpg",
+        "/u17genc/u17mac4.jpg", "/u17genc/u17mac5.jpg", "/u17genc/u17mac6.jpg",
+        "/u17genc/u17mac7.jpg", "/u17genc/u17mac8.jpg", "/u17genc/u17mac9.jpg",
+        "/u17genc/u17mac10.jpg"
+      ]
+    },
+    {
+      id: 11,
+      title: "U17/A Ligi Resmi Karşılaşması: Zeytinburnu Zafer Spor vs Güngören Spor Kulübü",
+      date: "24 Ekim 2026",
+      coverImage: "/u17gngrn/u17zfrmac1.jpg",
+      colSpan: "col-span-1",
+      photos: [
+        "/u17gngrn/u17zfrmac1.jpg", "/u17gngrn/u17zfrmac2.jpg", "/u17gngrn/u17zfrmac3.jpg",
+        "/u17gngrn/u17zfrmac4.jpg", "/u17gngrn/u17zfrmac5.jpg", "/u17gngrn/u17zfrmac6.jpg",
+        "/u17gngrn/u17zfrmac7.jpg", "/u17gngrn/u17zfrmac8.jpg", "/u17gngrn/u17zfrmac9.jpg",
+        "/u17gngrn/u17zfrmac10.jpg", "/u17gngrn/u17zfrmac11.jpg"
+      ]
+    },
+    {
       id: 1,
       title: "Zeytinburnu Zaferspor - Spor Okulu Antrenmanı",
       date: "Eylül 2026",
