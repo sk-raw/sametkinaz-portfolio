@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
-  // Manuel geçmiş maçlar listesi (Skorlar "Tamamlandı" olarak ayarlandı)
   const initialPastMatches = [
     { id: 4, league: "U17/A Ligi - 2. Hafta", date: "24 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Güngören", score: "Tamamlandı" },
     { id: 3, league: "U17/A Ligi - 3. Hafta", date: "21 Ekim 2026", home: "Gençosman Spor ve Kültür", away: "Zeytinburnu Zafer Spor", score: "Tamamlandı" },
@@ -14,7 +13,6 @@ export default function Home() {
     { id: 1, league: "U14/A Ligi - 1. Hafta", date: "10 Ekim 2026", home: "Zeytinburnu Zafer Spor", away: "Trabzon 1453 Spor", score: "Tamamlandı" },
   ];
 
-  // Tüm planlanan çekimler havuzu
   const allUpcomingMatches = [
     { 
       id: 5, 
@@ -668,7 +666,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-bold transition-colors text-lg md:text-xl"
           >
-            @_sk.raw <span className="text-sm">&nearrow;</span>
+            @_sk.raw <span>↗</span>
           </a>
         </div>
 
