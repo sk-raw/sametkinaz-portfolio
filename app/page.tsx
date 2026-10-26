@@ -86,7 +86,7 @@ export default function Home() {
   const albums = [
     {
       id: 9,
-      title: "U14/A Ligi: Haznedar İdman Ocağı Spor vs Zeytinburnu Zafer Spor",
+      title: "U14/A Ligi Resmi Karşılaşması: Haznedar İdman Ocağı Spor vs Zeytinburnu Zafer Spor",
       date: "25 Ekim 2026",
       coverImage: "/u14mac/u14zfrmac1.jpg",
       colSpan: "col-span-1 md:col-span-2 md:row-span-2",
@@ -99,7 +99,7 @@ export default function Home() {
     },
     {
       id: 10,
-      title: "U17/A Ligi: Gençosman Spor ve Kültür vs Zeytinburnu Zafer Spor",
+      title: "U17/A Ligi Resmi Karşılaşması: Gençosman Spor ve Kültür vs Zeytinburnu Zafer Spor",
       date: "21 Ekim 2026",
       coverImage: "/u17genc/u17mac1.jpg",
       colSpan: "col-span-1",
@@ -112,7 +112,7 @@ export default function Home() {
     },
     {
       id: 11,
-      title: "U17/A Ligi: Zeytinburnu Zafer Spor vs Güngören Spor Kulübü",
+      title: "U17/A Ligi Resmi Karşılaşması: Zeytinburnu Zafer Spor vs Güngören Spor Kulübü",
       date: "24 Ekim 2026",
       coverImage: "/u17gngrn/u17zfrmac1.jpg",
       colSpan: "col-span-1",
@@ -712,8 +712,8 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
             <Image 
-              src="/u14zaferidman/u14zaferidman1.jpg" 
-              alt="Instagram Post 1" 
+              src="/u14mac/u14zfrmac1.jpg" 
+              alt="U14 Haznedar Maci Kare 1" 
               fill 
               className="object-cover transition-transform duration-700 group-hover:scale-110" 
             />
@@ -726,8 +726,8 @@ export default function Home() {
 
           <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
             <Image 
-              src="/u14zaferarnavutkoy/u14zaferarnavutkoy1.jpg" 
-              alt="Instagram Post 2" 
+              src="/u17genc/u17mac1.jpg" 
+              alt="U17 Gencosman Maci Kare 1" 
               fill 
               className="object-cover transition-transform duration-700 group-hover:scale-110" 
             />
@@ -740,8 +740,8 @@ export default function Home() {
 
           <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
             <Image 
-              src="/u12zaferselvi/u12zaferselvi1.jpg" 
-              alt="Instagram Post 3" 
+              src="/u17gngrn/u17zfrmac1.jpg" 
+              alt="U17 Gungoren Maci Kare 1" 
               fill 
               className="object-cover transition-transform duration-700 group-hover:scale-110" 
             />
@@ -754,8 +754,8 @@ export default function Home() {
 
           <a href="https://instagram.com/_sk.raw" target="_blank" rel="noopener noreferrer" className="relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800">
             <Image 
-              src="/u11zaferselvi/u11zaferselvi1.jpg" 
-              alt="Instagram Post 4" 
+              src="/u14mac/u14zfrmac2.jpg" 
+              alt="U14 Haznedar Maci Kare 2" 
               fill 
               className="object-cover transition-transform duration-700 group-hover:scale-110" 
             />
