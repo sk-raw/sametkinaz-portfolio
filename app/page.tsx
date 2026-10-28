@@ -18,73 +18,71 @@ export default function Home() {
       id: 5, 
       league: "U14/A Ligi - 2. Hafta", 
       dateStr: "25 Ekim 2026 Pazar • 10:45", 
-      dateObj: new Date(2026, 9, 25, 10, 45), 
+      dateObj: new Date(2026, 9, 25, 10, 45).getTime(), 
       home: "Haznedar İdman Ocağı Spor", 
-      away: "Zeytinburnu Zafer Spor", 
+      away: "Zeytinburnu Zafer", 
       location: "Güngören Belediye Sahası" 
     },
     { 
       id: 6, 
       league: "U14/A Ligi - 3. Hafta", 
       dateStr: "28 Ekim 2026 Çarşamba • 15:00", 
-      dateObj: new Date(2026, 9, 28, 15, 0), 
+      dateObj: new Date(2026, 9, 28, 15, 0).getTime(), 
       home: "Zeytinburnu Zafer Spor", 
       away: "Sultangazi Sultançiftliği Spor", 
       location: "Zeytinburnu Bld. Hasan Doğan Sahası" 
     }
   ];
 
-  const [activeMatchIndex, setActiveMatchIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [dynamicPastMatches, setDynamicPastMatches] = useState(initialPastMatches);
-  const [upcomingMatches, setUpcomingMatches] = useState(allUpcomingMatches);
+  // Aktif zaman yönetimi (Her saniye güncellenir, süresi bitenleri otomatik kaydırır)
+  const [now, setNow] = useState<number | null>(null);
   const [showAllPast, setShowAllPast] = useState(false);
 
   useEffect(() => {
+    setNow(new Date().getTime()); 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      
-      const upcoming = allUpcomingMatches.filter(m => m.dateObj.getTime() > now);
-      const passed = allUpcomingMatches.filter(m => m.dateObj.getTime() <= now);
-
-      setUpcomingMatches(upcoming.length > 0 ? upcoming : [allUpcomingMatches[allUpcomingMatches.length - 1]]);
-
-      const formattedPassed = passed.map(m => ({
-        id: m.id,
-        league: m.league,
-        date: m.dateStr.split(" • ")[0],
-        home: m.home,
-        away: m.away,
-        score: "Tamamlandı"
-      }));
-
-      // Set past matches, newest first
-      setDynamicPastMatches([...formattedPassed, ...initialPastMatches]);
-
-      let currentIndex = allUpcomingMatches.findIndex(m => m.dateObj.getTime() > now);
-      if (currentIndex === -1) currentIndex = allUpcomingMatches.length - 1;
-      
-      setActiveMatchIndex(currentIndex);
-      const targetTime = allUpcomingMatches[currentIndex].dateObj.getTime();
-      const distance = targetTime - now;
-
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
+      setNow(new Date().getTime());
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
-  const currentActiveMatch = allUpcomingMatches[activeMatchIndex] || allUpcomingMatches[0];
+  const isMounted = now !== null;
+  const currentTime = now || 0;
+
+  // Süresi gelmeyenler (Planlananlar)
+  const upcomingMatches = allUpcomingMatches.filter(m => m.dateObj > currentTime);
+  
+  // Süresi geçenleri tamamlananlara formatlayıp ekleme
+  const passedMatches = allUpcomingMatches
+    .filter(m => m.dateObj <= currentTime)
+    .map(m => ({
+      id: m.id,
+      league: m.league,
+      date: m.dateStr.split(" • ")[0],
+      home: m.home,
+      away: m.away,
+      score: "Tamamlandı"
+    }))
+    .reverse(); // En son biten en üste gelsin
+
+  const dynamicPastMatches = [...passedMatches, ...initialPastMatches];
   const displayedPastMatches = showAllPast ? dynamicPastMatches : dynamicPastMatches.slice(0, 3);
+
+  // En yakın maç
+  const currentActiveMatch = upcomingMatches[0] || null;
+
+  let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  if (currentActiveMatch && isMounted) {
+    const distance = currentActiveMatch.dateObj - currentTime;
+    if (distance > 0) {
+      timeLeft = {
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+      };
+    }
+  }
 
   const albums = [
     {
@@ -354,53 +352,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SIRADAKİ MAÇ SAYACI BANNERI */}
-      <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-neutral-900/90 border border-neutral-800 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl flex flex-col lg:flex-row items-center justify-between gap-8"
-        >
-          <div className="flex items-center gap-6">
-            <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 text-2xl flex-shrink-0">
-              📸
-            </div>
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">Sıradaki Çekim ({currentActiveMatch.league})</p>
+      {/* SIRADAKİ MAÇ SAYACI BANNERI - EĞER MAÇ VARSA */}
+      {isMounted && currentActiveMatch ? (
+        <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-neutral-900/90 border border-neutral-800 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl flex flex-col lg:flex-row items-center justify-between gap-8"
+          >
+            <div className="flex items-center gap-6">
+              <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 text-2xl flex-shrink-0">
+                📸
               </div>
-              <h3 className="text-white text-xl md:text-2xl font-extrabold">{currentActiveMatch.home} vs. {currentActiveMatch.away}</h3>
-              <p className="text-neutral-400 text-sm mt-1">📅 {currentActiveMatch.dateStr} • {currentActiveMatch.location}</p>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider">Sıradaki Çekim ({currentActiveMatch.league})</p>
+                </div>
+                <h3 className="text-white text-xl md:text-2xl font-extrabold">{currentActiveMatch.home} vs. {currentActiveMatch.away}</h3>
+                <p className="text-neutral-400 text-sm mt-1">📅 {currentActiveMatch.dateStr} • {currentActiveMatch.location}</p>
+              </div>
             </div>
-          </div>
 
-          {/* CANLI GERİ SAYIM SAYACI */}
-          <div className="flex items-center gap-3 bg-neutral-950/80 border border-neutral-800/80 px-6 py-4 rounded-2xl">
-            <div className="text-center px-2">
-              <span className="block text-2xl font-extrabold text-white">{timeLeft.days}</span>
-              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Gün</span>
+            {/* CANLI GERİ SAYIM SAYACI */}
+            <div className="flex items-center gap-3 bg-neutral-950/80 border border-neutral-800/80 px-6 py-4 rounded-2xl">
+              <div className="text-center px-2">
+                <span className="block text-2xl font-extrabold text-white">{timeLeft.days}</span>
+                <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Gün</span>
+              </div>
+              <span className="text-neutral-600 font-bold">:</span>
+              <div className="text-center px-2">
+                <span className="block text-2xl font-extrabold text-white">{timeLeft.hours}</span>
+                <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Saat</span>
+              </div>
+              <span className="text-neutral-600 font-bold">:</span>
+              <div className="text-center px-2">
+                <span className="block text-2xl font-extrabold text-white">{timeLeft.minutes}</span>
+                <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Dakika</span>
+              </div>
+              <span className="text-neutral-600 font-bold">:</span>
+              <div className="text-center px-2">
+                <span className="block text-2xl font-extrabold text-orange-500">{timeLeft.seconds}</span>
+                <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Saniye</span>
+              </div>
             </div>
-            <span className="text-neutral-600 font-bold">:</span>
-            <div className="text-center px-2">
-              <span className="block text-2xl font-extrabold text-white">{timeLeft.hours}</span>
-              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Saat</span>
+          </motion.div>
+        </section>
+      ) : isMounted && !currentActiveMatch ? (
+        /* MAÇ YOKSA (TÜMÜ GEÇTİYSE) GÖSTERİLECEK BOŞ DURUM */
+        <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-neutral-900/90 border border-neutral-800 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl flex flex-col lg:flex-row items-center justify-between gap-8"
+          >
+            <div className="flex items-center gap-6">
+              <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 text-2xl flex-shrink-0">
+                ⌛
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-block w-2 h-2 rounded-full bg-neutral-500" />
+                  <p className="text-neutral-400 text-xs font-bold uppercase tracking-wider">Planlanan Çekim Yok</p>
+                </div>
+                <h3 className="text-white text-xl md:text-2xl font-extrabold">Yeni Çekim Takvimi Bekleniyor</h3>
+                <p className="text-neutral-400 text-sm mt-1">Sıradaki maç ve idman programı yakında açıklanacaktır.</p>
+              </div>
             </div>
-            <span className="text-neutral-600 font-bold">:</span>
-            <div className="text-center px-2">
-              <span className="block text-2xl font-extrabold text-white">{timeLeft.minutes}</span>
-              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Dakika</span>
-            </div>
-            <span className="text-neutral-600 font-bold">:</span>
-            <div className="text-center px-2">
-              <span className="block text-2xl font-extrabold text-orange-500">{timeLeft.seconds}</span>
-              <span className="text-[10px] uppercase font-semibold text-neutral-500 tracking-wider">Saniye</span>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+          </motion.div>
+        </section>
+      ) : null}
 
       {/* ÇEKİM PROGRAMI VE MAÇ SONUÇLARI SECTION */}
       <section id="fikstur" className="max-w-7xl mx-auto px-4 py-12">
@@ -422,22 +445,28 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-orange-500 inline-block animate-pulse" /> Planlanan Çekimler
             </h3>
             <div className="space-y-4">
-              {upcomingMatches.map((match) => (
-                <div key={match.id} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">{match.league}</p>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-white font-semibold">{match.home}</span>
-                      <span className="text-neutral-500 text-sm">vs</span>
-                      <span className="text-white font-semibold">{match.away}</span>
+              {isMounted && upcomingMatches.length > 0 ? (
+                upcomingMatches.map((match) => (
+                  <div key={match.id} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">{match.league}</p>
+                      <div className="flex flex-col gap-1">
+                        <span className="text-white font-semibold">{match.home}</span>
+                        <span className="text-neutral-500 text-sm">vs</span>
+                        <span className="text-white font-semibold">{match.away}</span>
+                      </div>
+                    </div>
+                    <div className="text-left sm:text-right">
+                      <p className="text-sm font-bold text-neutral-300">{match.dateStr}</p>
+                      <p className="text-xs text-neutral-500 mt-1">{match.location}</p>
                     </div>
                   </div>
-                  <div className="text-left sm:text-right">
-                    <p className="text-sm font-bold text-neutral-300">{match.dateStr}</p>
-                    <p className="text-xs text-neutral-500 mt-1">{match.location}</p>
-                  </div>
+                ))
+              ) : isMounted ? (
+                <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 flex items-center justify-center text-center">
+                  <p className="text-neutral-500 text-sm font-semibold">Şu an için planlanmış bir çekim bulunmuyor.</p>
                 </div>
-              ))}
+              ) : null}
             </div>
           </div>
 
