@@ -31,6 +31,24 @@ export default function Home() {
       home: "Zeytinburnu Zafer Spor", 
       away: "Sultangazi Sultançiftliği Spor", 
       location: "Zeytinburnu Bld. Hasan Doğan Sahası" 
+    },
+    { 
+      id: 7, 
+      league: "U14/A Ligi - 4. Hafta", 
+      dateStr: "31 Ekim 2026 Cumartesi • 14:00", 
+      dateObj: new Date(2026, 9, 31, 14, 0).getTime(), 
+      home: "Okmeydanı Mahmut Şevket Paşa Spor", 
+      away: "Zeytinburnu Zafer Spor", 
+      location: "Ayazağa Yusuf Tunaoğlu" 
+    },
+    { 
+      id: 8, 
+      league: "U17/A Ligi - 4. Hafta", 
+      dateStr: "1 Kasım 2026 Pazar • 13:00", 
+      dateObj: new Date(2026, 10, 1, 13, 0).getTime(), 
+      home: "Zeytinburnu Zafer Spor", 
+      away: "Günyamaç", 
+      location: "Zeytinburnu Bld. Hasan Doğan Sahası" 
     }
   ];
 
